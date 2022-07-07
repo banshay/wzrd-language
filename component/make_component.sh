@@ -43,31 +43,31 @@
 declare -r JAVA_VERSION="${1:?First argument must be java version.}"
 declare -r GRAALVM_VERSION="${2:?Second argument must be GraalVM version.}"
 readonly COMPONENT_DIR="component_temp_dir"
-readonly LANGUAGE_PATH="$COMPONENT_DIR/languages/sl"
-if [[ -f ../native/slnative ]]; then
-    INCLUDE_SLNATIVE="TRUE"
+readonly LANGUAGE_PATH="$COMPONENT_DIR/languages/wzrd"
+if [[ -f ../native/wzrd-native ]]; then
+    INCLUDE_NATIVE="TRUE"
 fi
 
 rm -rf COMPONENT_DIR
 
 mkdir -p "$LANGUAGE_PATH"
-cp ../language/target/simplelanguage.jar "$LANGUAGE_PATH"
+cp ../language/target/wzrd-language.jar "$LANGUAGE_PATH"
 
 mkdir -p "$LANGUAGE_PATH/launcher"
-cp ../launcher/target/sl-launcher.jar "$LANGUAGE_PATH/launcher/"
+cp ../launcher/target/wzrd-launcher.jar "$LANGUAGE_PATH/launcher/"
 
 mkdir -p "$LANGUAGE_PATH/bin"
 cp ../sl $LANGUAGE_PATH/bin/
-if [[ $INCLUDE_SLNATIVE = "TRUE" ]]; then
-    cp ../native/slnative $LANGUAGE_PATH/bin/
+if [[ $INCLUDE_NATIVE = "TRUE" ]]; then
+    cp ../native/wzrd-native $LANGUAGE_PATH/bin/
 fi
 
 touch "$LANGUAGE_PATH/native-image.properties"
 
 mkdir -p "$COMPONENT_DIR/META-INF"
 {
-    echo "Bundle-Name: Simple Language";
-    echo "Bundle-Symbolic-Name: com.oracle.truffle.sl";
+    echo "Bundle-Name: WZRD Language";
+    echo "Bundle-Symbolic-Name: com.banshay.language";
     echo "Bundle-Version: $GRAALVM_VERSION";
     echo "Bundle-RequireCapability: org.graalvm; filter:=\"(&(graalvm_version=$GRAALVM_VERSION)(os_arch=amd64))\"";
     echo "x-GraalVM-Polyglot-Part: True"
@@ -75,18 +75,18 @@ mkdir -p "$COMPONENT_DIR/META-INF"
 
 (
 cd $COMPONENT_DIR || exit 1
-$JAVA_HOME/bin/jar cfm ../sl-component.jar META-INF/MANIFEST.MF .
+$JAVA_HOME/bin/jar cfm ../wzrd-component.jar META-INF/MANIFEST.MF .
 
-echo "bin/sl = ../languages/sl/bin/sl" > META-INF/symlinks
+echo "bin/wzrd = ../languages/wzrd/bin/wzrd" > META-INF/symlinks
 if [[ $INCLUDE_SLNATIVE = "TRUE" ]]; then
-    echo "bin/slnative = ../languages/sl/bin/slnative" >> META-INF/symlinks
+    echo "bin/wzrd-native = ../languages/wzrd/bin/wzrd-native" >> META-INF/symlinks
 fi
-$JAVA_HOME/bin/jar uf ../sl-component.jar META-INF/symlinks
+$JAVA_HOME/bin/jar uf ../wzrd-component.jar META-INF/symlinks
 
 {
-    echo 'languages/sl/bin/sl = rwxrwxr-x'
-    echo 'languages/sl/bin/slnative = rwxrwxr-x'
+    echo 'languages/wzrd/bin/wzrd = rwxrwxr-x'
+    echo 'languages/wzrd/bin/wzrd-native = rwxrwxr-x'
 } > META-INF/permissions
-$JAVA_HOME/bin/jar uf ../sl-component.jar META-INF/permissions
+$JAVA_HOME/bin/jar uf ../wzrd-component.jar META-INF/permissions
 )
 rm -rf $COMPONENT_DIR
