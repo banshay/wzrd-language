@@ -40,4 +40,4 @@
 # SOFTWARE.
 #
 
-[ -f wzrd-native ] && rm wzrd-native || echo "wzrd-native not found."
+[ -f wzrdn ] && rm wzrdn || echo "wzrdn not found."

@@ -1,4 +1,4 @@
-// Generated from G:/Github/WZRD/language/src/main/java/com/banshay/language/parser\WZRD.g4 by ANTLR 4.10.1
+// Generated from language/src/main/java/com/banshay/language/parser/WZRD.g4 by ANTLR 4.9.2
 package com.banshay.language.parser;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class WZRDParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.10.1", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.9.2", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -22,13 +22,13 @@ public class WZRDParser extends Parser {
 		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
 		WS=25, COMMENT=26, LINE_COMMENT=27, ID=28, CLASS=29, NUMBER=30;
 	public static final int
-		RULE_test = 0, RULE_testExpression = 1, RULE_wzrd = 2, RULE_class = 3, 
+		RULE_test = 0, RULE_testExpression = 1, RULE_wzrd = 2, RULE_clazz = 3, 
 		RULE_dependency = 4, RULE_function = 5, RULE_block = 6, RULE_statement = 7, 
 		RULE_object = 8, RULE_member = 9, RULE_expression = 10, RULE_literal = 11, 
 		RULE_type = 12, RULE_primitive = 13;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"test", "testExpression", "wzrd", "class", "dependency", "function", 
+			"test", "testExpression", "wzrd", "clazz", "dependency", "function", 
 			"block", "statement", "object", "member", "expression", "literal", "type", 
 			"primitive"
 		};
@@ -111,14 +111,6 @@ public class WZRDParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_test; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).enterTest(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).exitTest(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof WZRDVisitor ) return ((WZRDVisitor<? extends T>)visitor).visitTest(this);
 			else return visitor.visitChildren(this);
@@ -170,14 +162,6 @@ public class WZRDParser extends Parser {
 		}
 		public AddExpressionContext(TestExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).enterAddExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).exitAddExpression(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof WZRDVisitor ) return ((WZRDVisitor<? extends T>)visitor).visitAddExpression(this);
 			else return visitor.visitChildren(this);
@@ -188,14 +172,6 @@ public class WZRDParser extends Parser {
 			return getRuleContext(LiteralContext.class,0);
 		}
 		public LiteralExpressionContext(TestExpressionContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).enterLiteralExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).exitLiteralExpression(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof WZRDVisitor ) return ((WZRDVisitor<? extends T>)visitor).visitLiteralExpression(this);
@@ -266,22 +242,14 @@ public class WZRDParser extends Parser {
 	}
 
 	public static class WzrdContext extends ParserRuleContext {
-		public ClassContext class_() {
-			return getRuleContext(ClassContext.class,0);
+		public ClazzContext clazz() {
+			return getRuleContext(ClazzContext.class,0);
 		}
 		public TerminalNode EOF() { return getToken(WZRDParser.EOF, 0); }
 		public WzrdContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_wzrd; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).enterWzrd(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).exitWzrd(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof WZRDVisitor ) return ((WZRDVisitor<? extends T>)visitor).visitWzrd(this);
@@ -296,7 +264,7 @@ public class WZRDParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(42);
-			class_();
+			clazz();
 			setState(43);
 			match(EOF);
 			}
@@ -312,7 +280,7 @@ public class WZRDParser extends Parser {
 		return _localctx;
 	}
 
-	public static class ClassContext extends ParserRuleContext {
+	public static class ClazzContext extends ParserRuleContext {
 		public List<TerminalNode> CLASS() { return getTokens(WZRDParser.CLASS); }
 		public TerminalNode CLASS(int i) {
 			return getToken(WZRDParser.CLASS, i);
@@ -329,28 +297,20 @@ public class WZRDParser extends Parser {
 		public FunctionContext function(int i) {
 			return getRuleContext(FunctionContext.class,i);
 		}
-		public ClassContext(ParserRuleContext parent, int invokingState) {
+		public ClazzContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_class; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).enterClass(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).exitClass(this);
-		}
+		@Override public int getRuleIndex() { return RULE_clazz; }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof WZRDVisitor ) return ((WZRDVisitor<? extends T>)visitor).visitClass(this);
+			if ( visitor instanceof WZRDVisitor ) return ((WZRDVisitor<? extends T>)visitor).visitClazz(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final ClassContext class_() throws RecognitionException {
-		ClassContext _localctx = new ClassContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_class);
+	public final ClazzContext clazz() throws RecognitionException {
+		ClazzContext _localctx = new ClazzContext(_ctx, getState());
+		enterRule(_localctx, 6, RULE_clazz);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
@@ -423,14 +383,6 @@ public class WZRDParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_dependency; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).enterDependency(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).exitDependency(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof WZRDVisitor ) return ((WZRDVisitor<? extends T>)visitor).visitDependency(this);
 			else return visitor.visitChildren(this);
@@ -478,14 +430,6 @@ public class WZRDParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_function; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).enterFunction(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).exitFunction(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof WZRDVisitor ) return ((WZRDVisitor<? extends T>)visitor).visitFunction(this);
@@ -561,14 +505,6 @@ public class WZRDParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_block; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).enterBlock(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).exitBlock(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof WZRDVisitor ) return ((WZRDVisitor<? extends T>)visitor).visitBlock(this);
 			else return visitor.visitChildren(this);
@@ -630,14 +566,6 @@ public class WZRDParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_statement; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).enterStatement(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).exitStatement(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof WZRDVisitor ) return ((WZRDVisitor<? extends T>)visitor).visitStatement(this);
@@ -740,14 +668,6 @@ public class WZRDParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_object; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).enterObject(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).exitObject(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof WZRDVisitor ) return ((WZRDVisitor<? extends T>)visitor).visitObject(this);
 			else return visitor.visitChildren(this);
@@ -809,14 +729,6 @@ public class WZRDParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_member; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).enterMember(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).exitMember(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof WZRDVisitor ) return ((WZRDVisitor<? extends T>)visitor).visitMember(this);
 			else return visitor.visitChildren(this);
@@ -874,14 +786,6 @@ public class WZRDParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_expression; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).enterExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).exitExpression(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof WZRDVisitor ) return ((WZRDVisitor<? extends T>)visitor).visitExpression(this);
@@ -1058,14 +962,6 @@ public class WZRDParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_literal; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).enterLiteral(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).exitLiteral(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof WZRDVisitor ) return ((WZRDVisitor<? extends T>)visitor).visitLiteral(this);
 			else return visitor.visitChildren(this);
@@ -1137,14 +1033,6 @@ public class WZRDParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_type; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).enterType(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).exitType(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof WZRDVisitor ) return ((WZRDVisitor<? extends T>)visitor).visitType(this);
 			else return visitor.visitChildren(this);
@@ -1195,14 +1083,6 @@ public class WZRDParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_primitive; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).enterPrimitive(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof WZRDListener ) ((WZRDListener)listener).exitPrimitive(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof WZRDVisitor ) return ((WZRDVisitor<? extends T>)visitor).visitPrimitive(this);
@@ -1267,117 +1147,62 @@ public class WZRDParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\u001e\u00b8\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001"+
-		"\u0002\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004"+
-		"\u0002\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007"+
-		"\u0002\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b"+
-		"\u0002\f\u0007\f\u0002\r\u0007\r\u0001\u0000\u0001\u0000\u0001\u0000\u0001"+
-		"\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0005"+
-		"\u0001&\b\u0001\n\u0001\f\u0001)\t\u0001\u0001\u0002\u0001\u0002\u0001"+
-		"\u0002\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0003\u00032\b"+
-		"\u0003\u0001\u0003\u0001\u0003\u0005\u00036\b\u0003\n\u0003\f\u00039\t"+
-		"\u0003\u0001\u0003\u0005\u0003<\b\u0003\n\u0003\f\u0003?\t\u0003\u0001"+
-		"\u0003\u0001\u0003\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0005\u0001"+
-		"\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0005\u0005L\b"+
-		"\u0005\n\u0005\f\u0005O\t\u0005\u0003\u0005Q\b\u0005\u0001\u0005\u0001"+
-		"\u0005\u0001\u0005\u0001\u0006\u0001\u0006\u0005\u0006X\b\u0006\n\u0006"+
-		"\f\u0006[\t\u0006\u0001\u0006\u0001\u0006\u0001\u0007\u0001\u0007\u0001"+
-		"\u0007\u0001\u0007\u0001\u0007\u0001\u0007\u0001\u0007\u0001\u0007\u0003"+
-		"\u0007g\b\u0007\u0001\u0007\u0001\u0007\u0003\u0007k\b\u0007\u0003\u0007"+
-		"m\b\u0007\u0001\b\u0001\b\u0001\b\u0001\b\u0004\bs\b\b\u000b\b\f\bt\u0001"+
-		"\b\u0001\b\u0001\t\u0001\t\u0001\t\u0001\t\u0003\t}\b\t\u0001\n\u0001"+
-		"\n\u0001\n\u0001\n\u0001\n\u0001\n\u0005\n\u0085\b\n\n\n\f\n\u0088\t\n"+
-		"\u0003\n\u008a\b\n\u0001\n\u0001\n\u0001\n\u0001\n\u0001\n\u0001\n\u0001"+
-		"\n\u0001\n\u0001\n\u0001\n\u0001\n\u0001\n\u0001\n\u0001\n\u0003\n\u009a"+
-		"\b\n\u0001\n\u0001\n\u0001\n\u0001\n\u0001\n\u0001\n\u0005\n\u00a2\b\n"+
-		"\n\n\f\n\u00a5\t\n\u0001\u000b\u0001\u000b\u0001\u000b\u0005\u000b\u00aa"+
-		"\b\u000b\n\u000b\f\u000b\u00ad\t\u000b\u0001\u000b\u0003\u000b\u00b0\b"+
-		"\u000b\u0001\f\u0001\f\u0003\f\u00b4\b\f\u0001\r\u0001\r\u0001\r\u0001"+
-		"\u00ab\u0002\u0002\u0014\u000e\u0000\u0002\u0004\u0006\b\n\f\u000e\u0010"+
-		"\u0012\u0014\u0016\u0018\u001a\u0000\u0002\u0002\u0000\u0001\u0001\u0013"+
-		"\u0013\u0001\u0000\u0015\u0018\u00c4\u0000\u001c\u0001\u0000\u0000\u0000"+
-		"\u0002\u001f\u0001\u0000\u0000\u0000\u0004*\u0001\u0000\u0000\u0000\u0006"+
-		"-\u0001\u0000\u0000\u0000\bB\u0001\u0000\u0000\u0000\nE\u0001\u0000\u0000"+
-		"\u0000\fU\u0001\u0000\u0000\u0000\u000el\u0001\u0000\u0000\u0000\u0010"+
-		"n\u0001\u0000\u0000\u0000\u0012x\u0001\u0000\u0000\u0000\u0014\u0099\u0001"+
-		"\u0000\u0000\u0000\u0016\u00af\u0001\u0000\u0000\u0000\u0018\u00b3\u0001"+
-		"\u0000\u0000\u0000\u001a\u00b5\u0001\u0000\u0000\u0000\u001c\u001d\u0003"+
-		"\u0002\u0001\u0000\u001d\u001e\u0005\u0000\u0000\u0001\u001e\u0001\u0001"+
-		"\u0000\u0000\u0000\u001f \u0006\u0001\uffff\uffff\u0000 !\u0003\u0016"+
-		"\u000b\u0000!\'\u0001\u0000\u0000\u0000\"#\n\u0002\u0000\u0000#$\u0005"+
-		"\u0001\u0000\u0000$&\u0003\u0002\u0001\u0003%\"\u0001\u0000\u0000\u0000"+
-		"&)\u0001\u0000\u0000\u0000\'%\u0001\u0000\u0000\u0000\'(\u0001\u0000\u0000"+
-		"\u0000(\u0003\u0001\u0000\u0000\u0000)\'\u0001\u0000\u0000\u0000*+\u0003"+
-		"\u0006\u0003\u0000+,\u0005\u0000\u0000\u0001,\u0005\u0001\u0000\u0000"+
-		"\u0000-.\u0005\u0002\u0000\u0000.1\u0005\u001d\u0000\u0000/0\u0005\u0003"+
-		"\u0000\u000002\u0005\u001d\u0000\u00001/\u0001\u0000\u0000\u000012\u0001"+
-		"\u0000\u0000\u000023\u0001\u0000\u0000\u000037\u0005\u0004\u0000\u0000"+
-		"46\u0003\b\u0004\u000054\u0001\u0000\u0000\u000069\u0001\u0000\u0000\u0000"+
-		"75\u0001\u0000\u0000\u000078\u0001\u0000\u0000\u00008=\u0001\u0000\u0000"+
-		"\u000097\u0001\u0000\u0000\u0000:<\u0003\n\u0005\u0000;:\u0001\u0000\u0000"+
-		"\u0000<?\u0001\u0000\u0000\u0000=;\u0001\u0000\u0000\u0000=>\u0001\u0000"+
-		"\u0000\u0000>@\u0001\u0000\u0000\u0000?=\u0001\u0000\u0000\u0000@A\u0005"+
-		"\u0005\u0000\u0000A\u0007\u0001\u0000\u0000\u0000BC\u0005\u0006\u0000"+
-		"\u0000CD\u0005\u001d\u0000\u0000D\t\u0001\u0000\u0000\u0000EF\u0003\u0018"+
-		"\f\u0000FG\u0005\u001c\u0000\u0000GP\u0005\u0007\u0000\u0000HM\u0003\u0012"+
-		"\t\u0000IJ\u0005\b\u0000\u0000JL\u0003\u0012\t\u0000KI\u0001\u0000\u0000"+
-		"\u0000LO\u0001\u0000\u0000\u0000MK\u0001\u0000\u0000\u0000MN\u0001\u0000"+
-		"\u0000\u0000NQ\u0001\u0000\u0000\u0000OM\u0001\u0000\u0000\u0000PH\u0001"+
-		"\u0000\u0000\u0000PQ\u0001\u0000\u0000\u0000QR\u0001\u0000\u0000\u0000"+
-		"RS\u0005\t\u0000\u0000ST\u0003\f\u0006\u0000T\u000b\u0001\u0000\u0000"+
-		"\u0000UY\u0005\u0004\u0000\u0000VX\u0003\u000e\u0007\u0000WV\u0001\u0000"+
-		"\u0000\u0000X[\u0001\u0000\u0000\u0000YW\u0001\u0000\u0000\u0000YZ\u0001"+
-		"\u0000\u0000\u0000Z\\\u0001\u0000\u0000\u0000[Y\u0001\u0000\u0000\u0000"+
-		"\\]\u0005\u0005\u0000\u0000]\r\u0001\u0000\u0000\u0000^m\u0003\f\u0006"+
-		"\u0000_m\u0003\u0012\t\u0000`m\u0003\u0014\n\u0000ab\u0005\n\u0000\u0000"+
-		"bc\u0003\u0014\n\u0000cf\u0003\f\u0006\u0000de\u0005\u000b\u0000\u0000"+
-		"eg\u0003\f\u0006\u0000fd\u0001\u0000\u0000\u0000fg\u0001\u0000\u0000\u0000"+
-		"gm\u0001\u0000\u0000\u0000hj\u0005\f\u0000\u0000ik\u0003\u0014\n\u0000"+
-		"ji\u0001\u0000\u0000\u0000jk\u0001\u0000\u0000\u0000km\u0001\u0000\u0000"+
-		"\u0000l^\u0001\u0000\u0000\u0000l_\u0001\u0000\u0000\u0000l`\u0001\u0000"+
-		"\u0000\u0000la\u0001\u0000\u0000\u0000lh\u0001\u0000\u0000\u0000m\u000f"+
-		"\u0001\u0000\u0000\u0000no\u0005\r\u0000\u0000op\u0005\u001c\u0000\u0000"+
-		"pr\u0005\u0004\u0000\u0000qs\u0003\u0012\t\u0000rq\u0001\u0000\u0000\u0000"+
-		"st\u0001\u0000\u0000\u0000tr\u0001\u0000\u0000\u0000tu\u0001\u0000\u0000"+
-		"\u0000uv\u0001\u0000\u0000\u0000vw\u0005\u0005\u0000\u0000w\u0011\u0001"+
-		"\u0000\u0000\u0000xy\u0003\u0018\f\u0000y|\u0005\u001c\u0000\u0000z{\u0005"+
-		"\u000e\u0000\u0000{}\u0003\u0014\n\u0000|z\u0001\u0000\u0000\u0000|}\u0001"+
-		"\u0000\u0000\u0000}\u0013\u0001\u0000\u0000\u0000~\u007f\u0006\n\uffff"+
-		"\uffff\u0000\u007f\u0080\u0005\u001c\u0000\u0000\u0080\u0089\u0005\u0007"+
-		"\u0000\u0000\u0081\u0086\u0003\u0014\n\u0000\u0082\u0083\u0005\b\u0000"+
-		"\u0000\u0083\u0085\u0003\u0014\n\u0000\u0084\u0082\u0001\u0000\u0000\u0000"+
-		"\u0085\u0088\u0001\u0000\u0000\u0000\u0086\u0084\u0001\u0000\u0000\u0000"+
-		"\u0086\u0087\u0001\u0000\u0000\u0000\u0087\u008a\u0001\u0000\u0000\u0000"+
-		"\u0088\u0086\u0001\u0000\u0000\u0000\u0089\u0081\u0001\u0000\u0000\u0000"+
-		"\u0089\u008a\u0001\u0000\u0000\u0000\u008a\u008b\u0001\u0000\u0000\u0000"+
-		"\u008b\u009a\u0005\t\u0000\u0000\u008c\u008d\u0005\u001c\u0000\u0000\u008d"+
-		"\u008e\u0005\u000f\u0000\u0000\u008e\u008f\u0003\u0014\n\u0000\u008f\u0090"+
-		"\u0005\u0010\u0000\u0000\u0090\u009a\u0001\u0000\u0000\u0000\u0091\u0092"+
-		"\u0005\u0011\u0000\u0000\u0092\u009a\u0003\u0014\n\u0006\u0093\u009a\u0005"+
-		"\u001c\u0000\u0000\u0094\u009a\u0003\u0016\u000b\u0000\u0095\u0096\u0005"+
-		"\u0007\u0000\u0000\u0096\u0097\u0003\u0014\n\u0000\u0097\u0098\u0005\t"+
-		"\u0000\u0000\u0098\u009a\u0001\u0000\u0000\u0000\u0099~\u0001\u0000\u0000"+
-		"\u0000\u0099\u008c\u0001\u0000\u0000\u0000\u0099\u0091\u0001\u0000\u0000"+
-		"\u0000\u0099\u0093\u0001\u0000\u0000\u0000\u0099\u0094\u0001\u0000\u0000"+
-		"\u0000\u0099\u0095\u0001\u0000\u0000\u0000\u009a\u00a3\u0001\u0000\u0000"+
-		"\u0000\u009b\u009c\n\u0005\u0000\u0000\u009c\u009d\u0005\u0012\u0000\u0000"+
-		"\u009d\u00a2\u0003\u0014\n\u0006\u009e\u009f\n\u0004\u0000\u0000\u009f"+
-		"\u00a0\u0007\u0000\u0000\u0000\u00a0\u00a2\u0003\u0014\n\u0005\u00a1\u009b"+
-		"\u0001\u0000\u0000\u0000\u00a1\u009e\u0001\u0000\u0000\u0000\u00a2\u00a5"+
-		"\u0001\u0000\u0000\u0000\u00a3\u00a1\u0001\u0000\u0000\u0000\u00a3\u00a4"+
-		"\u0001\u0000\u0000\u0000\u00a4\u0015\u0001\u0000\u0000\u0000\u00a5\u00a3"+
-		"\u0001\u0000\u0000\u0000\u00a6\u00b0\u0005\u001e\u0000\u0000\u00a7\u00ab"+
-		"\u0005\u0014\u0000\u0000\u00a8\u00aa\t\u0000\u0000\u0000\u00a9\u00a8\u0001"+
-		"\u0000\u0000\u0000\u00aa\u00ad\u0001\u0000\u0000\u0000\u00ab\u00ac\u0001"+
-		"\u0000\u0000\u0000\u00ab\u00a9\u0001\u0000\u0000\u0000\u00ac\u00ae\u0001"+
-		"\u0000\u0000\u0000\u00ad\u00ab\u0001\u0000\u0000\u0000\u00ae\u00b0\u0005"+
-		"\u0014\u0000\u0000\u00af\u00a6\u0001\u0000\u0000\u0000\u00af\u00a7\u0001"+
-		"\u0000\u0000\u0000\u00b0\u0017\u0001\u0000\u0000\u0000\u00b1\u00b4\u0003"+
-		"\u001a\r\u0000\u00b2\u00b4\u0005\u001c\u0000\u0000\u00b3\u00b1\u0001\u0000"+
-		"\u0000\u0000\u00b3\u00b2\u0001\u0000\u0000\u0000\u00b4\u0019\u0001\u0000"+
-		"\u0000\u0000\u00b5\u00b6\u0007\u0001\u0000\u0000\u00b6\u001b\u0001\u0000"+
-		"\u0000\u0000\u0014\'17=MPYfjlt|\u0086\u0089\u0099\u00a1\u00a3\u00ab\u00af"+
-		"\u00b3";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3 \u00ba\4\2\t\2\4"+
+		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
+		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3"+
+		"\3\3\3\7\3(\n\3\f\3\16\3+\13\3\3\4\3\4\3\4\3\5\3\5\3\5\3\5\5\5\64\n\5"+
+		"\3\5\3\5\7\58\n\5\f\5\16\5;\13\5\3\5\7\5>\n\5\f\5\16\5A\13\5\3\5\3\5\3"+
+		"\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\7\7\7N\n\7\f\7\16\7Q\13\7\5\7S\n\7\3"+
+		"\7\3\7\3\7\3\b\3\b\7\bZ\n\b\f\b\16\b]\13\b\3\b\3\b\3\t\3\t\3\t\3\t\3\t"+
+		"\3\t\3\t\3\t\5\ti\n\t\3\t\3\t\5\tm\n\t\5\to\n\t\3\n\3\n\3\n\3\n\6\nu\n"+
+		"\n\r\n\16\nv\3\n\3\n\3\13\3\13\3\13\3\13\5\13\177\n\13\3\f\3\f\3\f\3\f"+
+		"\3\f\3\f\7\f\u0087\n\f\f\f\16\f\u008a\13\f\5\f\u008c\n\f\3\f\3\f\3\f\3"+
+		"\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\5\f\u009c\n\f\3\f\3\f\3\f\3"+
+		"\f\3\f\3\f\7\f\u00a4\n\f\f\f\16\f\u00a7\13\f\3\r\3\r\3\r\7\r\u00ac\n\r"+
+		"\f\r\16\r\u00af\13\r\3\r\5\r\u00b2\n\r\3\16\3\16\5\16\u00b6\n\16\3\17"+
+		"\3\17\3\17\3\u00ad\4\4\26\20\2\4\6\b\n\f\16\20\22\24\26\30\32\34\2\4\4"+
+		"\2\3\3\25\25\3\2\27\32\2\u00c6\2\36\3\2\2\2\4!\3\2\2\2\6,\3\2\2\2\b/\3"+
+		"\2\2\2\nD\3\2\2\2\fG\3\2\2\2\16W\3\2\2\2\20n\3\2\2\2\22p\3\2\2\2\24z\3"+
+		"\2\2\2\26\u009b\3\2\2\2\30\u00b1\3\2\2\2\32\u00b5\3\2\2\2\34\u00b7\3\2"+
+		"\2\2\36\37\5\4\3\2\37 \7\2\2\3 \3\3\2\2\2!\"\b\3\1\2\"#\5\30\r\2#)\3\2"+
+		"\2\2$%\f\4\2\2%&\7\3\2\2&(\5\4\3\5\'$\3\2\2\2(+\3\2\2\2)\'\3\2\2\2)*\3"+
+		"\2\2\2*\5\3\2\2\2+)\3\2\2\2,-\5\b\5\2-.\7\2\2\3.\7\3\2\2\2/\60\7\4\2\2"+
+		"\60\63\7\37\2\2\61\62\7\5\2\2\62\64\7\37\2\2\63\61\3\2\2\2\63\64\3\2\2"+
+		"\2\64\65\3\2\2\2\659\7\6\2\2\668\5\n\6\2\67\66\3\2\2\28;\3\2\2\29\67\3"+
+		"\2\2\29:\3\2\2\2:?\3\2\2\2;9\3\2\2\2<>\5\f\7\2=<\3\2\2\2>A\3\2\2\2?=\3"+
+		"\2\2\2?@\3\2\2\2@B\3\2\2\2A?\3\2\2\2BC\7\7\2\2C\t\3\2\2\2DE\7\b\2\2EF"+
+		"\7\37\2\2F\13\3\2\2\2GH\5\32\16\2HI\7\36\2\2IR\7\t\2\2JO\5\24\13\2KL\7"+
+		"\n\2\2LN\5\24\13\2MK\3\2\2\2NQ\3\2\2\2OM\3\2\2\2OP\3\2\2\2PS\3\2\2\2Q"+
+		"O\3\2\2\2RJ\3\2\2\2RS\3\2\2\2ST\3\2\2\2TU\7\13\2\2UV\5\16\b\2V\r\3\2\2"+
+		"\2W[\7\6\2\2XZ\5\20\t\2YX\3\2\2\2Z]\3\2\2\2[Y\3\2\2\2[\\\3\2\2\2\\^\3"+
+		"\2\2\2][\3\2\2\2^_\7\7\2\2_\17\3\2\2\2`o\5\16\b\2ao\5\24\13\2bo\5\26\f"+
+		"\2cd\7\f\2\2de\5\26\f\2eh\5\16\b\2fg\7\r\2\2gi\5\16\b\2hf\3\2\2\2hi\3"+
+		"\2\2\2io\3\2\2\2jl\7\16\2\2km\5\26\f\2lk\3\2\2\2lm\3\2\2\2mo\3\2\2\2n"+
+		"`\3\2\2\2na\3\2\2\2nb\3\2\2\2nc\3\2\2\2nj\3\2\2\2o\21\3\2\2\2pq\7\17\2"+
+		"\2qr\7\36\2\2rt\7\6\2\2su\5\24\13\2ts\3\2\2\2uv\3\2\2\2vt\3\2\2\2vw\3"+
+		"\2\2\2wx\3\2\2\2xy\7\7\2\2y\23\3\2\2\2z{\5\32\16\2{~\7\36\2\2|}\7\20\2"+
+		"\2}\177\5\26\f\2~|\3\2\2\2~\177\3\2\2\2\177\25\3\2\2\2\u0080\u0081\b\f"+
+		"\1\2\u0081\u0082\7\36\2\2\u0082\u008b\7\t\2\2\u0083\u0088\5\26\f\2\u0084"+
+		"\u0085\7\n\2\2\u0085\u0087\5\26\f\2\u0086\u0084\3\2\2\2\u0087\u008a\3"+
+		"\2\2\2\u0088\u0086\3\2\2\2\u0088\u0089\3\2\2\2\u0089\u008c\3\2\2\2\u008a"+
+		"\u0088\3\2\2\2\u008b\u0083\3\2\2\2\u008b\u008c\3\2\2\2\u008c\u008d\3\2"+
+		"\2\2\u008d\u009c\7\13\2\2\u008e\u008f\7\36\2\2\u008f\u0090\7\21\2\2\u0090"+
+		"\u0091\5\26\f\2\u0091\u0092\7\22\2\2\u0092\u009c\3\2\2\2\u0093\u0094\7"+
+		"\23\2\2\u0094\u009c\5\26\f\b\u0095\u009c\7\36\2\2\u0096\u009c\5\30\r\2"+
+		"\u0097\u0098\7\t\2\2\u0098\u0099\5\26\f\2\u0099\u009a\7\13\2\2\u009a\u009c"+
+		"\3\2\2\2\u009b\u0080\3\2\2\2\u009b\u008e\3\2\2\2\u009b\u0093\3\2\2\2\u009b"+
+		"\u0095\3\2\2\2\u009b\u0096\3\2\2\2\u009b\u0097\3\2\2\2\u009c\u00a5\3\2"+
+		"\2\2\u009d\u009e\f\7\2\2\u009e\u009f\7\24\2\2\u009f\u00a4\5\26\f\b\u00a0"+
+		"\u00a1\f\6\2\2\u00a1\u00a2\t\2\2\2\u00a2\u00a4\5\26\f\7\u00a3\u009d\3"+
+		"\2\2\2\u00a3\u00a0\3\2\2\2\u00a4\u00a7\3\2\2\2\u00a5\u00a3\3\2\2\2\u00a5"+
+		"\u00a6\3\2\2\2\u00a6\27\3\2\2\2\u00a7\u00a5\3\2\2\2\u00a8\u00b2\7 \2\2"+
+		"\u00a9\u00ad\7\26\2\2\u00aa\u00ac\13\2\2\2\u00ab\u00aa\3\2\2\2\u00ac\u00af"+
+		"\3\2\2\2\u00ad\u00ae\3\2\2\2\u00ad\u00ab\3\2\2\2\u00ae\u00b0\3\2\2\2\u00af"+
+		"\u00ad\3\2\2\2\u00b0\u00b2\7\26\2\2\u00b1\u00a8\3\2\2\2\u00b1\u00a9\3"+
+		"\2\2\2\u00b2\31\3\2\2\2\u00b3\u00b6\5\34\17\2\u00b4\u00b6\7\36\2\2\u00b5"+
+		"\u00b3\3\2\2\2\u00b5\u00b4\3\2\2\2\u00b6\33\3\2\2\2\u00b7\u00b8\t\3\2"+
+		"\2\u00b8\35\3\2\2\2\26)\639?OR[hlnv~\u0088\u008b\u009b\u00a3\u00a5\u00ad"+
+		"\u00b1\u00b5";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

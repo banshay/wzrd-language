@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Copyright (c) 2020, 2022, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2020, Oracle and/or its affiliates. All rights reserved.
 # DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
 #
 # The Universal Permissive License (UPL), Version 1.0
@@ -40,53 +40,5 @@
 # SOFTWARE.
 #
 
-declare -r JAVA_VERSION="${1:?First argument must be java version.}"
-declare -r GRAALVM_VERSION="${2:?Second argument must be GraalVM version.}"
-readonly COMPONENT_DIR="component_temp_dir"
-readonly LANGUAGE_PATH="$COMPONENT_DIR/languages/wzrd"
-if [[ -f ../native/wzrdn ]]; then
-    INCLUDE_NATIVE="TRUE"
-fi
-
-rm -rf COMPONENT_DIR
-
-mkdir -p "$LANGUAGE_PATH"
-cp ../language/target/wzrd.jar "$LANGUAGE_PATH"
-
-mkdir -p "$LANGUAGE_PATH/launcher"
-cp ../launcher/target/wzrd-launcher.jar "$LANGUAGE_PATH/launcher/"
-
-mkdir -p "$LANGUAGE_PATH/bin"
-cp ../wzrd $LANGUAGE_PATH/bin/
-if [[ $INCLUDE_NATIVE = "TRUE" ]]; then
-    cp ../native/wzrdn $LANGUAGE_PATH/bin/
-fi
-
-touch "$LANGUAGE_PATH/native-image.properties"
-
-mkdir -p "$COMPONENT_DIR/META-INF"
-{
-    echo "Bundle-Name: WZRD Language";
-    echo "Bundle-Symbolic-Name: com.banshay.language";
-    echo "Bundle-Version: $GRAALVM_VERSION";
-    echo "Bundle-RequireCapability: org.graalvm; filter:=\"(&(graalvm_version=$GRAALVM_VERSION)(os_arch=amd64))\"";
-    echo "x-GraalVM-Polyglot-Part: True"
-} > "$COMPONENT_DIR/META-INF/MANIFEST.MF"
-
-(
-cd $COMPONENT_DIR || exit 1
-$JAVA_HOME/bin/jar cfm ../wzrd-component.jar META-INF/MANIFEST.MF .
-
-echo "bin/wzrd = ../languages/wzrd/bin/wzrd" > META-INF/symlinks
-if [[ $INCLUDE_SLNATIVE = "TRUE" ]]; then
-    echo "bin/wzrdn = ../languages/wzrd/bin/wzrdn" >> META-INF/symlinks
-fi
-$JAVA_HOME/bin/jar uf ../wzrd-component.jar META-INF/symlinks
-
-{
-    echo 'languages/wzrd/bin/wzrd = rwxrwxr-x'
-    echo 'languages/wzrd/bin/wzrdn = rwxrwxr-x'
-} > META-INF/permissions
-$JAVA_HOME/bin/jar uf ../wzrd-component.jar META-INF/permissions
-)
-rm -rf $COMPONENT_DIR
+curl -O https://www.antlr.org/download/antlr-4.9.2-complete.jar
+java -cp antlr-4.9.2-complete.jar org.antlr.v4.Tool -package com.banshay.language.parser -no-listener -visitor language/src/main/java/com/banshay/language/parser/WZRD.g4

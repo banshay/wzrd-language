@@ -38,7 +38,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.oracle.truffle.sl.launcher;
+package com.oracle.truffle.wzrd.launcher;
 
 import java.io.File;
 import java.io.IOException;
@@ -98,10 +98,10 @@ public final class WzrdMain {
 
         try {
             Value result = context.eval(source);
-            if (context.getBindings(WZRD).getMember("main") == null) {
-                err.println("No function main() defined in WZRD source file.");
-                return 1;
-            }
+//            if (context.getBindings(WZRD).getMember("main") == null) {
+//                err.println("No function main() defined in WZRD source file.");
+//                return 1;
+//            }
             if (!result.isNull()) {
                 out.println(result.toString());
             }

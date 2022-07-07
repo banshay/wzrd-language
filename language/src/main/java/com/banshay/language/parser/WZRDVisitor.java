@@ -1,4 +1,4 @@
-// Generated from G:/Github/WZRD/language/src/main/java/com/banshay/language/parser\WZRD.g4 by ANTLR 4.10.1
+// Generated from language/src/main/java/com/banshay/language/parser/WZRD.g4 by ANTLR 4.9.2
 package com.banshay.language.parser;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -37,11 +37,11 @@ public interface WZRDVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitWzrd(WZRDParser.WzrdContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link WZRDParser#class}.
+	 * Visit a parse tree produced by {@link WZRDParser#clazz}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitClass(WZRDParser.ClassContext ctx);
+	T visitClazz(WZRDParser.ClazzContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link WZRDParser#dependency}.
 	 * @param ctx the parse tree

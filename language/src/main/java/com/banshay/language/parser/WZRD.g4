@@ -5,15 +5,15 @@ test
    ;
 
 testExpression
-   : testExpression '+' testExpression
-   | literal
+   : left = testExpression '+' right = testExpression #AddExpression
+   | literal #LiteralExpression
    ;
 
 wzrd
-   : class EOF # ClassExpression
+   : clazz EOF
    ;
 
-class
+clazz
    : 'class' CLASS (':' CLASS)? '{' (dependency)* (function)* '}'
    ;
 

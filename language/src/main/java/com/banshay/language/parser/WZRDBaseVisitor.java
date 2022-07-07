@@ -1,4 +1,4 @@
-// Generated from G:/Github/WZRD/language/src/main/java/com/banshay/language/parser\WZRD.g4 by ANTLR 4.10.1
+// Generated from language/src/main/java/com/banshay/language/parser/WZRD.g4 by ANTLR 4.9.2
 package com.banshay.language.parser;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
@@ -45,7 +45,7 @@ public class WZRDBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements W
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitClass(WZRDParser.ClassContext ctx) { return visitChildren(ctx); }
+	@Override public T visitClazz(WZRDParser.ClazzContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

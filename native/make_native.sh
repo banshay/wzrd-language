@@ -46,6 +46,6 @@ if [[ $BUILD_NATIVE == "false" ]]; then
 fi
 "$JAVA_HOME"/bin/native-image \
     --macro:truffle --no-fallback --initialize-at-build-time \
-    -cp ../language/target/wzrd-language.jar:../launcher/target/wzrd-launcher.jar \
-    com.oracle.truffle.sl.launcher.WzrdMain \
-    wzrd-native
+    -cp ../language/target/wzrd.jar:../launcher/target/wzrd-launcher.jar \
+    com.oracle.truffle.wzrd.launcher.WzrdMain \
+    wzrdn
