@@ -41,4 +41,4 @@
 #
 
 curl -O https://www.antlr.org/download/antlr-4.9.2-complete.jar
-java -cp antlr-4.9.2-complete.jar org.antlr.v4.Tool -package com.banshay.language.parser -no-listener -visitor language/src/main/java/com/banshay/language/parser/WZRD.g4
+java -cp antlr-4.9.2-complete.jar org.antlr.v4.Tool -package com.banshay.language.parser -no-listener language/src/main/java/com/banshay/language/parser/WZRD.g4

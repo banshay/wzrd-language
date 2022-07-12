@@ -2,34 +2,33 @@ package com.banshay.language.literal;
 
 import com.banshay.language.nodes.toplevel.WzrdExpressionNode;
 import com.oracle.truffle.api.frame.VirtualFrame;
-import com.oracle.truffle.api.nodes.UnexpectedResultException;
 
-public final class DoubleLiteral extends WzrdExpressionNode {
+public final class StringLiteral extends WzrdExpressionNode {
 
-  private final double value;
+  private final String value;
 
-  public DoubleLiteral(double value) {
+  public StringLiteral(String value) {
     this.value = value;
   }
 
   @Override
-  public int executeInt(VirtualFrame frame) throws UnexpectedResultException {
-    throw new UnexpectedResultException(value);
+  public int executeInt(VirtualFrame frame) {
+    return Integer.parseInt(value);
   }
 
   @Override
   public double executeDouble(VirtualFrame frame) {
-    return value;
+    return Double.parseDouble(value);
   }
 
   @Override
   public long executeLong(VirtualFrame frame) {
-    return Double.doubleToLongBits(value);
+    return Long.parseLong(value);
   }
 
   @Override
   public boolean executeBoolean(VirtualFrame frame) {
-    return value != 0;
+    return Boolean.getBoolean(value);
   }
 
   @Override
