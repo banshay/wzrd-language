@@ -50,6 +50,11 @@ public class WzrdLanguage extends TruffleLanguage<WzrdContext> {
     return new WzrdContext(new WzrdGlobalScope());
   }
 
+  @Override
+  protected Object getScope(WzrdContext context) {
+    return context.globalScope;
+  }
+
   public static WzrdLanguage get(Node node) {
     return REFERENCE.get(node);
   }
