@@ -30,8 +30,8 @@ grammar WZRD;
 
 wzrd
 //   : clazz EOF
-//   : function function*
-   : statement statement*
+   : function function*
+//   : statement statement*
    ;
 
 //clazz
@@ -42,9 +42,13 @@ wzrd
 //   : 'dep' CLASS
 //   ;
 
-//function
-//   : type ID '(' (member (',' member)*)? ')' block
-//   ;
+function
+   : 'fn' functionName '(' (ID (',' ID)*)? ')' block
+   ;
+
+functionName
+   : ID
+   ;
 
 block
    : '{' statement* '}'
@@ -52,11 +56,10 @@ block
 
 statement
    : block #BlockStatement
+   | function #FunctionStatement
    | expression #ExpressionStatement
-//   | member
    | whileExpression #WhileStatement
    | ifExpression #IfStatement
-   | 'return' expression? #ReturnStatement
    ;
 
 ifExpression

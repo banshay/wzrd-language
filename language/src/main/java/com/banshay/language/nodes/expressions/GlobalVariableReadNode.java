@@ -7,12 +7,12 @@ import com.oracle.truffle.api.dsl.NodeField;
 import com.oracle.truffle.api.dsl.Specialization;
 
 @NodeField(name = "name", type = String.class)
-public abstract class VariableNode extends WzrdExpressionNode {
+public abstract class GlobalVariableReadNode extends WzrdExpressionNode {
   protected abstract String getName();
 
   @Specialization
   @TruffleBoundary
-  protected Object readVariable(){
+  protected Object readVariable() {
     var context = WzrdContext.get(null);
     var value = context.globalScope.getVariable(this.getName());
     if (value == null) {
@@ -20,5 +20,4 @@ public abstract class VariableNode extends WzrdExpressionNode {
     }
     return value;
   }
-
 }

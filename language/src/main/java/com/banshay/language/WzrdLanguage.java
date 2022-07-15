@@ -1,10 +1,10 @@
 package com.banshay.language;
 
-import com.banshay.language.nodes.WzrdRootNode;
 import com.banshay.language.nodes.WzrdUndefinedFunctionRootNode;
-import com.banshay.language.nodes.toplevel.WzrdNode;
+import com.oracle.truffle.api.Assumption;
 import com.oracle.truffle.api.CallTarget;
 import com.oracle.truffle.api.RootCallTarget;
+import com.oracle.truffle.api.Truffle;
 import com.oracle.truffle.api.TruffleLanguage;
 import com.oracle.truffle.api.nodes.Node;
 import java.util.Map;
@@ -24,13 +24,19 @@ public class WzrdLanguage extends TruffleLanguage<WzrdContext> {
   public static final LanguageReference<WzrdLanguage> REFERENCE =
       LanguageReference.create(WzrdLanguage.class);
 
+  private final Assumption singleContext =
+      Truffle.getRuntime().createAssumption("Single WZRD Context");
+
   private final Map<String, RootCallTarget> undefinedFunctions = new ConcurrentHashMap<>();
 
   @Override
   protected CallTarget parse(ParsingRequest request) throws Exception {
-    var nodes = WzrdScriptTruffleParser.parse(request.getSource().getReader());
-    var rootNode = new WzrdRootNode("main", this, nodes.toArray(WzrdNode[]::new));
-    return rootNode.getCallTarget();
+    var functions = WzrdScriptTruffleParser.parse(request.getSource().getReader(), this);
+    var mainFunction = functions.get("main");
+    if (mainFunction == null) {
+      throw new RuntimeException("No main function present!");
+    }
+    return mainFunction;
   }
 
   public RootCallTarget getOrCreateUndefinedFunction(String name) {
@@ -47,7 +53,7 @@ public class WzrdLanguage extends TruffleLanguage<WzrdContext> {
 
   @Override
   protected WzrdContext createContext(Env env) {
-    return new WzrdContext(new WzrdGlobalScope());
+    return new WzrdContext(this, new WzrdGlobalScope());
   }
 
   @Override
@@ -57,5 +63,9 @@ public class WzrdLanguage extends TruffleLanguage<WzrdContext> {
 
   public static WzrdLanguage get(Node node) {
     return REFERENCE.get(node);
+  }
+
+  public boolean isSingleContext() {
+    return singleContext.isValid();
   }
 }
