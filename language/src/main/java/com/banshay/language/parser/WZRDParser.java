@@ -633,6 +633,15 @@ public class WZRDParser extends Parser {
 		}
 		public MultiplicationExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 	}
+	public static class SubExpressionContext extends ExpressionContext {
+		public List<ExpressionContext> expression() {
+			return getRuleContexts(ExpressionContext.class);
+		}
+		public ExpressionContext expression(int i) {
+			return getRuleContext(ExpressionContext.class,i);
+		}
+		public SubExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
+	}
 
 	public final ExpressionContext expression() throws RecognitionException {
 		return expression(0);
@@ -645,7 +654,6 @@ public class WZRDParser extends Parser {
 		ExpressionContext _prevctx = _localctx;
 		int _startState = 16;
 		enterRecursionRule(_localctx, 16, RULE_expression, _p);
-		int _la;
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
@@ -696,7 +704,7 @@ public class WZRDParser extends Parser {
 				break;
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(115);
+			setState(118);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,10,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -704,7 +712,7 @@ public class WZRDParser extends Parser {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(113);
+					setState(116);
 					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,9,_ctx) ) {
 					case 1:
@@ -712,11 +720,11 @@ public class WZRDParser extends Parser {
 						_localctx = new MultiplicationExpressionContext(new ExpressionContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(100);
-						if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");
+						if (!(precpred(_ctx, 8))) throw new FailedPredicateException(this, "precpred(_ctx, 8)");
 						setState(101);
 						match(T__9);
 						setState(102);
-						expression(8);
+						expression(9);
 						}
 						break;
 					case 2:
@@ -724,11 +732,11 @@ public class WZRDParser extends Parser {
 						_localctx = new DivisionExpressionContext(new ExpressionContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(103);
-						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
+						if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");
 						setState(104);
 						match(T__10);
 						setState(105);
-						expression(7);
+						expression(8);
 						}
 						break;
 					case 3:
@@ -736,37 +744,41 @@ public class WZRDParser extends Parser {
 						_localctx = new AddExpressionContext(new ExpressionContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(106);
-						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
+						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
 						setState(107);
-						_la = _input.LA(1);
-						if ( !(_la==T__11 || _la==T__12) ) {
-						_errHandler.recoverInline(this);
-						}
-						else {
-							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-							_errHandler.reportMatch(this);
-							consume();
-						}
+						match(T__11);
 						setState(108);
-						expression(6);
+						expression(7);
 						}
 						break;
 					case 4:
 						{
-						_localctx = new BooleanExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						_localctx = new SubExpressionContext(new ExpressionContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(109);
-						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
+						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
 						setState(110);
-						comparisonToken();
+						match(T__12);
 						setState(111);
+						expression(6);
+						}
+						break;
+					case 5:
+						{
+						_localctx = new BooleanExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						pushNewRecursionContext(_localctx, _startState, RULE_expression);
+						setState(112);
+						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
+						setState(113);
+						comparisonToken();
+						setState(114);
 						expression(5);
 						}
 						break;
 					}
 					} 
 				}
-				setState(117);
+				setState(120);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,10,_ctx);
 			}
@@ -797,19 +809,19 @@ public class WZRDParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(125);
+			setState(128);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__13:
 				{
-				setState(118);
+				setState(121);
 				match(T__13);
 				}
 				break;
 			case T__14:
 			case T__15:
 				{
-				setState(119);
+				setState(122);
 				_la = _input.LA(1);
 				if ( !(_la==T__14 || _la==T__15) ) {
 				_errHandler.recoverInline(this);
@@ -819,12 +831,12 @@ public class WZRDParser extends Parser {
 					_errHandler.reportMatch(this);
 					consume();
 				}
-				setState(121);
+				setState(124);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==T__16) {
 					{
-					setState(120);
+					setState(123);
 					match(T__16);
 					}
 				}
@@ -833,13 +845,13 @@ public class WZRDParser extends Parser {
 				break;
 			case T__17:
 				{
-				setState(123);
+				setState(126);
 				match(T__17);
 				}
 				break;
 			case T__18:
 				{
-				setState(124);
+				setState(127);
 				match(T__18);
 				}
 				break;
@@ -876,16 +888,16 @@ public class WZRDParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(127);
-			match(ID);
 			setState(130);
+			match(ID);
+			setState(133);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,13,_ctx) ) {
 			case 1:
 				{
-				setState(128);
+				setState(131);
 				match(T__16);
-				setState(129);
+				setState(132);
 				expression(0);
 				}
 				break;
@@ -927,14 +939,14 @@ public class WZRDParser extends Parser {
 		LiteralContext _localctx = new LiteralContext(_ctx, getState());
 		enterRule(_localctx, 22, RULE_literal);
 		try {
-			setState(134);
+			setState(137);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case NUMBER:
 				_localctx = new NumberLiteralContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(132);
+				setState(135);
 				match(NUMBER);
 				}
 				break;
@@ -942,7 +954,7 @@ public class WZRDParser extends Parser {
 				_localctx = new StringLiteralContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(133);
+				setState(136);
 				match(STR);
 				}
 				break;
@@ -971,55 +983,58 @@ public class WZRDParser extends Parser {
 	private boolean expression_sempred(ExpressionContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0:
-			return precpred(_ctx, 7);
+			return precpred(_ctx, 8);
 		case 1:
-			return precpred(_ctx, 6);
+			return precpred(_ctx, 7);
 		case 2:
-			return precpred(_ctx, 5);
+			return precpred(_ctx, 6);
 		case 3:
+			return precpred(_ctx, 5);
+		case 4:
 			return precpred(_ctx, 4);
 		}
 		return true;
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\33\u008b\4\2\t\2"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\33\u008e\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\3\2\3\2\7\2\35\n\2\f\2\16\2 \13\2\3\3\3\3\3\3\3"+
 		"\3\3\3\3\3\7\3(\n\3\f\3\16\3+\13\3\5\3-\n\3\3\3\3\3\3\3\3\4\3\4\3\5\3"+
 		"\5\7\5\66\n\5\f\5\16\59\13\5\3\5\3\5\3\6\3\6\3\6\3\6\3\6\5\6B\n\6\3\7"+
 		"\3\7\3\7\3\7\3\7\7\7I\n\7\f\7\16\7L\13\7\5\7N\n\7\3\7\3\7\3\b\3\b\3\b"+
 		"\3\b\3\b\5\bW\n\b\3\t\3\t\3\t\3\t\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\5\n"+
-		"e\n\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\7\nt\n\n\f\n"+
-		"\16\nw\13\n\3\13\3\13\3\13\5\13|\n\13\3\13\3\13\5\13\u0080\n\13\3\f\3"+
-		"\f\3\f\5\f\u0085\n\f\3\r\3\r\5\r\u0089\n\r\3\r\2\3\22\16\2\4\6\b\n\f\16"+
-		"\20\22\24\26\30\2\4\3\2\16\17\3\2\21\22\2\u0096\2\32\3\2\2\2\4!\3\2\2"+
-		"\2\6\61\3\2\2\2\b\63\3\2\2\2\nA\3\2\2\2\fC\3\2\2\2\16Q\3\2\2\2\20X\3\2"+
-		"\2\2\22d\3\2\2\2\24\177\3\2\2\2\26\u0081\3\2\2\2\30\u0088\3\2\2\2\32\36"+
-		"\5\4\3\2\33\35\5\4\3\2\34\33\3\2\2\2\35 \3\2\2\2\36\34\3\2\2\2\36\37\3"+
-		"\2\2\2\37\3\3\2\2\2 \36\3\2\2\2!\"\7\3\2\2\"#\5\6\4\2#,\7\4\2\2$)\7\32"+
-		"\2\2%&\7\5\2\2&(\7\32\2\2\'%\3\2\2\2(+\3\2\2\2)\'\3\2\2\2)*\3\2\2\2*-"+
-		"\3\2\2\2+)\3\2\2\2,$\3\2\2\2,-\3\2\2\2-.\3\2\2\2./\7\6\2\2/\60\5\b\5\2"+
-		"\60\5\3\2\2\2\61\62\7\32\2\2\62\7\3\2\2\2\63\67\7\7\2\2\64\66\5\n\6\2"+
-		"\65\64\3\2\2\2\669\3\2\2\2\67\65\3\2\2\2\678\3\2\2\28:\3\2\2\29\67\3\2"+
-		"\2\2:;\7\b\2\2;\t\3\2\2\2<B\5\b\5\2=B\5\f\7\2>B\5\22\n\2?B\5\20\t\2@B"+
-		"\5\16\b\2A<\3\2\2\2A=\3\2\2\2A>\3\2\2\2A?\3\2\2\2A@\3\2\2\2B\13\3\2\2"+
-		"\2CD\7\32\2\2DM\7\4\2\2EJ\5\22\n\2FG\7\5\2\2GI\5\22\n\2HF\3\2\2\2IL\3"+
-		"\2\2\2JH\3\2\2\2JK\3\2\2\2KN\3\2\2\2LJ\3\2\2\2ME\3\2\2\2MN\3\2\2\2NO\3"+
-		"\2\2\2OP\7\6\2\2P\r\3\2\2\2QR\7\t\2\2RS\5\22\n\2SV\5\b\5\2TU\7\n\2\2U"+
-		"W\5\b\5\2VT\3\2\2\2VW\3\2\2\2W\17\3\2\2\2XY\7\13\2\2YZ\5\22\n\2Z[\5\b"+
-		"\5\2[\21\3\2\2\2\\]\b\n\1\2]^\7\4\2\2^_\5\22\n\2_`\7\6\2\2`e\3\2\2\2a"+
-		"e\7\32\2\2be\5\26\f\2ce\5\30\r\2d\\\3\2\2\2da\3\2\2\2db\3\2\2\2dc\3\2"+
-		"\2\2eu\3\2\2\2fg\f\t\2\2gh\7\f\2\2ht\5\22\n\nij\f\b\2\2jk\7\r\2\2kt\5"+
-		"\22\n\tlm\f\7\2\2mn\t\2\2\2nt\5\22\n\bop\f\6\2\2pq\5\24\13\2qr\5\22\n"+
-		"\7rt\3\2\2\2sf\3\2\2\2si\3\2\2\2sl\3\2\2\2so\3\2\2\2tw\3\2\2\2us\3\2\2"+
-		"\2uv\3\2\2\2v\23\3\2\2\2wu\3\2\2\2x\u0080\7\20\2\2y{\t\3\2\2z|\7\23\2"+
-		"\2{z\3\2\2\2{|\3\2\2\2|\u0080\3\2\2\2}\u0080\7\24\2\2~\u0080\7\25\2\2"+
-		"\177x\3\2\2\2\177y\3\2\2\2\177}\3\2\2\2\177~\3\2\2\2\u0080\25\3\2\2\2"+
-		"\u0081\u0084\7\32\2\2\u0082\u0083\7\23\2\2\u0083\u0085\5\22\n\2\u0084"+
-		"\u0082\3\2\2\2\u0084\u0085\3\2\2\2\u0085\27\3\2\2\2\u0086\u0089\7\33\2"+
-		"\2\u0087\u0089\7\26\2\2\u0088\u0086\3\2\2\2\u0088\u0087\3\2\2\2\u0089"+
-		"\31\3\2\2\2\21\36),\67AJMVdsu{\177\u0084\u0088";
+		"e\n\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n"+
+		"\7\nw\n\n\f\n\16\nz\13\n\3\13\3\13\3\13\5\13\177\n\13\3\13\3\13\5\13\u0083"+
+		"\n\13\3\f\3\f\3\f\5\f\u0088\n\f\3\r\3\r\5\r\u008c\n\r\3\r\2\3\22\16\2"+
+		"\4\6\b\n\f\16\20\22\24\26\30\2\3\3\2\21\22\2\u009a\2\32\3\2\2\2\4!\3\2"+
+		"\2\2\6\61\3\2\2\2\b\63\3\2\2\2\nA\3\2\2\2\fC\3\2\2\2\16Q\3\2\2\2\20X\3"+
+		"\2\2\2\22d\3\2\2\2\24\u0082\3\2\2\2\26\u0084\3\2\2\2\30\u008b\3\2\2\2"+
+		"\32\36\5\4\3\2\33\35\5\4\3\2\34\33\3\2\2\2\35 \3\2\2\2\36\34\3\2\2\2\36"+
+		"\37\3\2\2\2\37\3\3\2\2\2 \36\3\2\2\2!\"\7\3\2\2\"#\5\6\4\2#,\7\4\2\2$"+
+		")\7\32\2\2%&\7\5\2\2&(\7\32\2\2\'%\3\2\2\2(+\3\2\2\2)\'\3\2\2\2)*\3\2"+
+		"\2\2*-\3\2\2\2+)\3\2\2\2,$\3\2\2\2,-\3\2\2\2-.\3\2\2\2./\7\6\2\2/\60\5"+
+		"\b\5\2\60\5\3\2\2\2\61\62\7\32\2\2\62\7\3\2\2\2\63\67\7\7\2\2\64\66\5"+
+		"\n\6\2\65\64\3\2\2\2\669\3\2\2\2\67\65\3\2\2\2\678\3\2\2\28:\3\2\2\29"+
+		"\67\3\2\2\2:;\7\b\2\2;\t\3\2\2\2<B\5\b\5\2=B\5\f\7\2>B\5\22\n\2?B\5\20"+
+		"\t\2@B\5\16\b\2A<\3\2\2\2A=\3\2\2\2A>\3\2\2\2A?\3\2\2\2A@\3\2\2\2B\13"+
+		"\3\2\2\2CD\7\32\2\2DM\7\4\2\2EJ\5\22\n\2FG\7\5\2\2GI\5\22\n\2HF\3\2\2"+
+		"\2IL\3\2\2\2JH\3\2\2\2JK\3\2\2\2KN\3\2\2\2LJ\3\2\2\2ME\3\2\2\2MN\3\2\2"+
+		"\2NO\3\2\2\2OP\7\6\2\2P\r\3\2\2\2QR\7\t\2\2RS\5\22\n\2SV\5\b\5\2TU\7\n"+
+		"\2\2UW\5\b\5\2VT\3\2\2\2VW\3\2\2\2W\17\3\2\2\2XY\7\13\2\2YZ\5\22\n\2Z"+
+		"[\5\b\5\2[\21\3\2\2\2\\]\b\n\1\2]^\7\4\2\2^_\5\22\n\2_`\7\6\2\2`e\3\2"+
+		"\2\2ae\7\32\2\2be\5\26\f\2ce\5\30\r\2d\\\3\2\2\2da\3\2\2\2db\3\2\2\2d"+
+		"c\3\2\2\2ex\3\2\2\2fg\f\n\2\2gh\7\f\2\2hw\5\22\n\13ij\f\t\2\2jk\7\r\2"+
+		"\2kw\5\22\n\nlm\f\b\2\2mn\7\16\2\2nw\5\22\n\top\f\7\2\2pq\7\17\2\2qw\5"+
+		"\22\n\brs\f\6\2\2st\5\24\13\2tu\5\22\n\7uw\3\2\2\2vf\3\2\2\2vi\3\2\2\2"+
+		"vl\3\2\2\2vo\3\2\2\2vr\3\2\2\2wz\3\2\2\2xv\3\2\2\2xy\3\2\2\2y\23\3\2\2"+
+		"\2zx\3\2\2\2{\u0083\7\20\2\2|~\t\2\2\2}\177\7\23\2\2~}\3\2\2\2~\177\3"+
+		"\2\2\2\177\u0083\3\2\2\2\u0080\u0083\7\24\2\2\u0081\u0083\7\25\2\2\u0082"+
+		"{\3\2\2\2\u0082|\3\2\2\2\u0082\u0080\3\2\2\2\u0082\u0081\3\2\2\2\u0083"+
+		"\25\3\2\2\2\u0084\u0087\7\32\2\2\u0085\u0086\7\23\2\2\u0086\u0088\5\22"+
+		"\n\2\u0087\u0085\3\2\2\2\u0087\u0088\3\2\2\2\u0088\27\3\2\2\2\u0089\u008c"+
+		"\7\33\2\2\u008a\u008c\7\26\2\2\u008b\u0089\3\2\2\2\u008b\u008a\3\2\2\2"+
+		"\u008c\31\3\2\2\2\21\36),\67AJMVdvx~\u0082\u0087\u008b";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

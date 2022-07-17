@@ -21,6 +21,7 @@ import com.banshay.language.nodes.expressions.LocalVariableWriteNodeGen;
 import com.banshay.language.nodes.expressions.LogicalAndNode;
 import com.banshay.language.nodes.expressions.LogicalOrNode;
 import com.banshay.language.nodes.expressions.MultiplicationNodeGen;
+import com.banshay.language.nodes.expressions.SubtractNodeGen;
 import com.banshay.language.nodes.statements.IfStatement;
 import com.banshay.language.nodes.statements.WhileStatement;
 import com.banshay.language.nodes.statements.WzrdBlockNode;
@@ -34,6 +35,7 @@ import com.banshay.language.parser.WZRDParser.BooleanExpressionContext;
 import com.banshay.language.parser.WZRDParser.ExpressionContext;
 import com.banshay.language.parser.WZRDParser.IfStatementContext;
 import com.banshay.language.parser.WZRDParser.StatementContext;
+import com.banshay.language.parser.WZRDParser.VariableExpressionContext;
 import com.banshay.language.parser.WZRDParser.WhileStatementContext;
 import com.oracle.truffle.api.RootCallTarget;
 import com.oracle.truffle.api.frame.FrameDescriptor;
@@ -201,6 +203,9 @@ public class WzrdScriptTruffleParser {
       case WZRDParser.AddExpressionContext a -> AddNodeGen.create(
           expressionToNode(a.expression(0), frameDescriptorBuilder, scope),
           expressionToNode(a.expression(1), frameDescriptorBuilder, scope));
+      case WZRDParser.SubExpressionContext a -> SubtractNodeGen.create(
+          expressionToNode(a.expression(0), frameDescriptorBuilder, scope),
+          expressionToNode(a.expression(1), frameDescriptorBuilder, scope));
       case WZRDParser.DivisionExpressionContext d -> DivisionNodeGen.create(
           expressionToNode(d.expression(0), frameDescriptorBuilder, scope),
           expressionToNode(d.expression(1), frameDescriptorBuilder, scope));
@@ -208,14 +213,24 @@ public class WzrdScriptTruffleParser {
           expressionToNode(m.expression(0), frameDescriptorBuilder, scope),
           expressionToNode(m.expression(1), frameDescriptorBuilder, scope));
       case WZRDParser.BindingExpressionContext e -> createBinding(e, frameDescriptorBuilder, scope);
-      case WZRDParser.VariableExpressionContext v -> LocalVariableReadNodeGen.create(
-          scope.find(v.ID().getText()));
+      case WZRDParser.VariableExpressionContext v -> createLocalVariableNode(
+          v, frameDescriptorBuilder, scope);
       case WZRDParser.BooleanExpressionContext booleanExpressionContext -> booleanExpressionToNode(
           booleanExpressionContext, frameDescriptorBuilder, scope);
       case WZRDParser.NestedExpressionContext nestedExpression -> expressionToNode(
           nestedExpression.expression(), frameDescriptorBuilder, scope);
       default -> null;
     };
+  }
+
+  private static WzrdExpressionNode createLocalVariableNode(
+      VariableExpressionContext v, Builder frameDescriptorBuilder, Scope scope) {
+    var name = v.ID().getText();
+    var slot = scope.find(name);
+    if (slot == null) {
+      slot = addSlot(name, frameDescriptorBuilder, scope);
+    }
+    return LocalVariableReadNodeGen.create(slot);
   }
 
   private static WzrdExpressionNode booleanExpressionToNode(

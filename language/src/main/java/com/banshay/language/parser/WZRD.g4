@@ -84,7 +84,8 @@ expression
    : '(' expression ')' #NestedExpression
    | expression '*' expression #MultiplicationExpression
    | expression '/' expression #DivisionExpression
-   | expression ('+' | '-') expression #AddExpression
+   | expression '+' expression #AddExpression
+   | expression '-' expression #SubExpression
    | expression comparisonToken expression #BooleanExpression
 //   | ID ('=' ID | expression)? #BindingExpression
    | ID #VariableExpression

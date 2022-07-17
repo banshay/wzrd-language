@@ -27,6 +27,22 @@ class WzrdStatementTest {
   }
 
   @Test
+  void should_execute_subtraction() {
+    var code =
+        """
+          fn main(){
+            a = 5
+            b = 10
+            b - a
+          }
+          """;
+    try (var context = Context.create()) {
+      var result = context.eval("wzrd", code);
+      assertEquals(5, result.asInt());
+    }
+  }
+
+  @Test
   void should_execute_loop() {
     var code =
         """
@@ -45,4 +61,27 @@ class WzrdStatementTest {
       assertEquals(7, result.asInt());
     }
   }
+
+  @Test
+  void should_execute_loop2() {
+    var code =
+        """
+          fn main(){
+            i = 8
+            a = 1
+            while(i > 0){
+              i = i - 1
+              a = a + a
+            }
+            a
+          }
+          """;
+    try (var context = Context.create()) {
+      var result = context.eval("wzrd", code);
+      assertEquals(256, result.asInt());
+    }
+  }
+
+
+
 }
