@@ -113,7 +113,7 @@
             <include>**/*TestSuite.java</include>
             <include>**/*Test.java</include>
           </includes>
-          <argLine>-Dgraalvm.locatorDisabled=true ${test.argLine}</argLine>
+          <argLine>-Dgraalvm.locatorDisabled=true --enable-preview ${test.argLine}</argLine>
         </configuration>
       </plugin>
       <plugin>
@@ -152,8 +152,8 @@
             <source>17</source>
             <target>17</target>
             <compilerArgs>
-              <arg>${test.argLine}</arg>
               <arg>--enable-preview</arg>
+              <arg>${test.argLine}</arg>
             </compilerArgs>
           </configuration>
         </plugin>
