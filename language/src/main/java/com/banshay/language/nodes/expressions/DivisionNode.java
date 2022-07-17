@@ -1,12 +1,8 @@
 package com.banshay.language.nodes.expressions;
 
-import com.banshay.language.nodes.toplevel.WzrdExpressionNode;
-import com.oracle.truffle.api.dsl.NodeChild;
 import com.oracle.truffle.api.dsl.Specialization;
 
-@NodeChild("leftNode")
-@NodeChild("rightNode")
-public abstract class DivisionNode extends WzrdExpressionNode {
+public abstract class DivisionNode extends WzrdBinaryNode {
 
   @Specialization(rewriteOn = ArithmeticException.class)
   public int divideInt(int leftNode, int rightNode) {

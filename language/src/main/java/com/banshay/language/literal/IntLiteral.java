@@ -21,15 +21,6 @@ public final class IntLiteral extends WzrdExpressionNode {
     return value;
   }
 
-  @Override
-  public long executeLong(VirtualFrame frame) {
-    return value;
-  }
-
-  @Override
-  public boolean executeBoolean(VirtualFrame frame) {
-    return value != 0;
-  }
 
   @Override
   public Object executeGeneric(VirtualFrame frame) {

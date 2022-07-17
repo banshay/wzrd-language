@@ -85,10 +85,15 @@ expression
    | expression '*' expression #MultiplicationExpression
    | expression '/' expression #DivisionExpression
    | expression ('+' | '-') expression #AddExpression
+   | expression comparisonToken expression #BooleanExpression
 //   | ID ('=' ID | expression)? #BindingExpression
    | ID #VariableExpression
    | binding #BindingExpression
    | literal #LiteralExpression
+   ;
+
+comparisonToken
+   : ('==' | ('<' | '>')('=')? | '&&' | '||')
    ;
 
 binding
@@ -96,20 +101,12 @@ binding
    ;
 
 literal
-   : NUMBER
-   | '"' (.)*? '"'
+   : NUMBER #NumberLiteral
+   | STR #StringLiteral
    ;
 
-type
-   : primitive
-   | ID
-   ;
-
-primitive
-   : 'void'
-   | 'number'
-   | 'boolean'
-   | 'string'
+STR
+   : '"' STRING*? '"'
    ;
 
 WS
@@ -128,12 +125,8 @@ ID
    : LOWER (LETTER | DIGIT)*
    ;
 
-CLASS
-   : UPPER (LETTER | DIGIT)*
-   ;
-
 NUMBER
-   : [1-9] DIGIT*
+   : [1-9] DIGIT* | [0]
    ;
 
 fragment UPPER
@@ -150,5 +143,9 @@ fragment LETTER
 
 fragment DIGIT
    : [0-9]
+   ;
+
+fragment STRING
+   : ( '\\' [\\"] | ~[\\"\r\n] )
    ;
 

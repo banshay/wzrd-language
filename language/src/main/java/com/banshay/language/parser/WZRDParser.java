@@ -19,18 +19,17 @@ public class WZRDParser extends Parser {
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
 		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
-		T__17=18, T__18=19, WS=20, COMMENT=21, LINE_COMMENT=22, ID=23, CLASS=24, 
+		T__17=18, T__18=19, STR=20, WS=21, COMMENT=22, LINE_COMMENT=23, ID=24, 
 		NUMBER=25;
 	public static final int
 		RULE_wzrd = 0, RULE_function = 1, RULE_functionName = 2, RULE_block = 3, 
 		RULE_statement = 4, RULE_functionLiteral = 5, RULE_ifExpression = 6, RULE_whileExpression = 7, 
-		RULE_expression = 8, RULE_binding = 9, RULE_literal = 10, RULE_type = 11, 
-		RULE_primitive = 12;
+		RULE_expression = 8, RULE_comparisonToken = 9, RULE_binding = 10, RULE_literal = 11;
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"wzrd", "function", "functionName", "block", "statement", "functionLiteral", 
-			"ifExpression", "whileExpression", "expression", "binding", "literal", 
-			"type", "primitive"
+			"ifExpression", "whileExpression", "expression", "comparisonToken", "binding", 
+			"literal"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -38,16 +37,15 @@ public class WZRDParser extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "'fn'", "'('", "','", "')'", "'{'", "'}'", "'if'", "'else'", "'while'", 
-			"'*'", "'/'", "'+'", "'-'", "'='", "'\"'", "'void'", "'number'", "'boolean'", 
-			"'string'"
+			"'*'", "'/'", "'+'", "'-'", "'=='", "'<'", "'>'", "'='", "'&&'", "'||'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
-			null, null, null, null, null, null, null, null, "WS", "COMMENT", "LINE_COMMENT", 
-			"ID", "CLASS", "NUMBER"
+			null, null, null, null, null, null, null, null, "STR", "WS", "COMMENT", 
+			"LINE_COMMENT", "ID", "NUMBER"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -121,19 +119,19 @@ public class WZRDParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(26);
+			setState(24);
 			function();
-			setState(30);
+			setState(28);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__0) {
 				{
 				{
-				setState(27);
+				setState(25);
 				function();
 				}
 				}
-				setState(32);
+				setState(30);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -174,41 +172,41 @@ public class WZRDParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(33);
+			setState(31);
 			match(T__0);
-			setState(34);
+			setState(32);
 			functionName();
-			setState(35);
+			setState(33);
 			match(T__1);
-			setState(44);
+			setState(42);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==ID) {
 				{
-				setState(36);
+				setState(34);
 				match(ID);
-				setState(41);
+				setState(39);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__2) {
 					{
 					{
-					setState(37);
+					setState(35);
 					match(T__2);
-					setState(38);
+					setState(36);
 					match(ID);
 					}
 					}
-					setState(43);
+					setState(41);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
 				}
 			}
 
-			setState(46);
+			setState(44);
 			match(T__3);
-			setState(47);
+			setState(45);
 			block();
 			}
 		}
@@ -237,7 +235,7 @@ public class WZRDParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(49);
+			setState(47);
 			match(ID);
 			}
 		}
@@ -272,23 +270,23 @@ public class WZRDParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(51);
+			setState(49);
 			match(T__4);
-			setState(55);
+			setState(53);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__1) | (1L << T__4) | (1L << T__6) | (1L << T__8) | (1L << T__14) | (1L << ID) | (1L << NUMBER))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__1) | (1L << T__4) | (1L << T__6) | (1L << T__8) | (1L << STR) | (1L << ID) | (1L << NUMBER))) != 0)) {
 				{
 				{
-				setState(52);
+				setState(50);
 				statement();
 				}
 				}
-				setState(57);
+				setState(55);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(58);
+			setState(56);
 			match(T__5);
 			}
 		}
@@ -349,14 +347,14 @@ public class WZRDParser extends Parser {
 		StatementContext _localctx = new StatementContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_statement);
 		try {
-			setState(65);
+			setState(63);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
 			case 1:
 				_localctx = new BlockStatementContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(60);
+				setState(58);
 				block();
 				}
 				break;
@@ -364,7 +362,7 @@ public class WZRDParser extends Parser {
 				_localctx = new FunctionStatementContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(61);
+				setState(59);
 				functionLiteral();
 				}
 				break;
@@ -372,7 +370,7 @@ public class WZRDParser extends Parser {
 				_localctx = new ExpressionStatementContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(62);
+				setState(60);
 				expression(0);
 				}
 				break;
@@ -380,7 +378,7 @@ public class WZRDParser extends Parser {
 				_localctx = new WhileStatementContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(63);
+				setState(61);
 				whileExpression();
 				}
 				break;
@@ -388,7 +386,7 @@ public class WZRDParser extends Parser {
 				_localctx = new IfStatementContext(_localctx);
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(64);
+				setState(62);
 				ifExpression();
 				}
 				break;
@@ -426,37 +424,37 @@ public class WZRDParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(67);
+			setState(65);
 			match(ID);
-			setState(68);
+			setState(66);
 			match(T__1);
-			setState(77);
+			setState(75);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__1) | (1L << T__14) | (1L << ID) | (1L << NUMBER))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__1) | (1L << STR) | (1L << ID) | (1L << NUMBER))) != 0)) {
 				{
-				setState(69);
+				setState(67);
 				expression(0);
-				setState(74);
+				setState(72);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__2) {
 					{
 					{
-					setState(70);
+					setState(68);
 					match(T__2);
-					setState(71);
+					setState(69);
 					expression(0);
 					}
 					}
-					setState(76);
+					setState(74);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
 				}
 			}
 
-			setState(79);
+			setState(77);
 			match(T__3);
 			}
 		}
@@ -494,20 +492,20 @@ public class WZRDParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(81);
+			setState(79);
 			match(T__6);
-			setState(82);
+			setState(80);
 			expression(0);
-			setState(83);
+			setState(81);
 			block();
-			setState(86);
+			setState(84);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==T__7) {
 				{
-				setState(84);
+				setState(82);
 				match(T__7);
-				setState(85);
+				setState(83);
 				block();
 				}
 			}
@@ -544,11 +542,11 @@ public class WZRDParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(88);
+			setState(86);
 			match(T__8);
-			setState(89);
+			setState(87);
 			expression(0);
-			setState(90);
+			setState(88);
 			block();
 			}
 		}
@@ -579,6 +577,18 @@ public class WZRDParser extends Parser {
 			return getRuleContext(BindingContext.class,0);
 		}
 		public BindingExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
+	}
+	public static class BooleanExpressionContext extends ExpressionContext {
+		public List<ExpressionContext> expression() {
+			return getRuleContexts(ExpressionContext.class);
+		}
+		public ExpressionContext expression(int i) {
+			return getRuleContext(ExpressionContext.class,i);
+		}
+		public ComparisonTokenContext comparisonToken() {
+			return getRuleContext(ComparisonTokenContext.class,0);
+		}
+		public BooleanExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 	}
 	public static class NestedExpressionContext extends ExpressionContext {
 		public ExpressionContext expression() {
@@ -640,7 +650,7 @@ public class WZRDParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(100);
+			setState(98);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
 			case 1:
@@ -649,11 +659,11 @@ public class WZRDParser extends Parser {
 				_ctx = _localctx;
 				_prevctx = _localctx;
 
-				setState(93);
+				setState(91);
 				match(T__1);
-				setState(94);
+				setState(92);
 				expression(0);
-				setState(95);
+				setState(93);
 				match(T__3);
 				}
 				break;
@@ -662,7 +672,7 @@ public class WZRDParser extends Parser {
 				_localctx = new VariableExpressionContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(97);
+				setState(95);
 				match(ID);
 				}
 				break;
@@ -671,7 +681,7 @@ public class WZRDParser extends Parser {
 				_localctx = new BindingExpressionContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(98);
+				setState(96);
 				binding();
 				}
 				break;
@@ -680,13 +690,13 @@ public class WZRDParser extends Parser {
 				_localctx = new LiteralExpressionContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(99);
+				setState(97);
 				literal();
 				}
 				break;
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(113);
+			setState(115);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,10,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -694,40 +704,40 @@ public class WZRDParser extends Parser {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(111);
+					setState(113);
 					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,9,_ctx) ) {
 					case 1:
 						{
 						_localctx = new MultiplicationExpressionContext(new ExpressionContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(102);
-						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
-						setState(103);
+						setState(100);
+						if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");
+						setState(101);
 						match(T__9);
-						setState(104);
-						expression(7);
+						setState(102);
+						expression(8);
 						}
 						break;
 					case 2:
 						{
 						_localctx = new DivisionExpressionContext(new ExpressionContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(105);
-						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
-						setState(106);
+						setState(103);
+						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
+						setState(104);
 						match(T__10);
-						setState(107);
-						expression(6);
+						setState(105);
+						expression(7);
 						}
 						break;
 					case 3:
 						{
 						_localctx = new AddExpressionContext(new ExpressionContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(108);
-						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
-						setState(109);
+						setState(106);
+						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
+						setState(107);
 						_la = _input.LA(1);
 						if ( !(_la==T__11 || _la==T__12) ) {
 						_errHandler.recoverInline(this);
@@ -737,14 +747,26 @@ public class WZRDParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
+						setState(108);
+						expression(6);
+						}
+						break;
+					case 4:
+						{
+						_localctx = new BooleanExpressionContext(new ExpressionContext(_parentctx, _parentState));
+						pushNewRecursionContext(_localctx, _startState, RULE_expression);
+						setState(109);
+						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
 						setState(110);
+						comparisonToken();
+						setState(111);
 						expression(5);
 						}
 						break;
 					}
 					} 
 				}
-				setState(115);
+				setState(117);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,10,_ctx);
 			}
@@ -757,6 +779,82 @@ public class WZRDParser extends Parser {
 		}
 		finally {
 			unrollRecursionContexts(_parentctx);
+		}
+		return _localctx;
+	}
+
+	public static class ComparisonTokenContext extends ParserRuleContext {
+		public ComparisonTokenContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_comparisonToken; }
+	}
+
+	public final ComparisonTokenContext comparisonToken() throws RecognitionException {
+		ComparisonTokenContext _localctx = new ComparisonTokenContext(_ctx, getState());
+		enterRule(_localctx, 18, RULE_comparisonToken);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(125);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case T__13:
+				{
+				setState(118);
+				match(T__13);
+				}
+				break;
+			case T__14:
+			case T__15:
+				{
+				setState(119);
+				_la = _input.LA(1);
+				if ( !(_la==T__14 || _la==T__15) ) {
+				_errHandler.recoverInline(this);
+				}
+				else {
+					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+					_errHandler.reportMatch(this);
+					consume();
+				}
+				setState(121);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if (_la==T__16) {
+					{
+					setState(120);
+					match(T__16);
+					}
+				}
+
+				}
+				break;
+			case T__17:
+				{
+				setState(123);
+				match(T__17);
+				}
+				break;
+			case T__18:
+				{
+				setState(124);
+				match(T__18);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
 		}
 		return _localctx;
 	}
@@ -774,20 +872,20 @@ public class WZRDParser extends Parser {
 
 	public final BindingContext binding() throws RecognitionException {
 		BindingContext _localctx = new BindingContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_binding);
+		enterRule(_localctx, 20, RULE_binding);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(116);
+			setState(127);
 			match(ID);
-			setState(119);
+			setState(130);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,11,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,13,_ctx) ) {
 			case 1:
 				{
-				setState(117);
-				match(T__13);
-				setState(118);
+				setState(128);
+				match(T__16);
+				setState(129);
 				expression(0);
 				}
 				break;
@@ -806,142 +904,50 @@ public class WZRDParser extends Parser {
 	}
 
 	public static class LiteralContext extends ParserRuleContext {
-		public TerminalNode NUMBER() { return getToken(WZRDParser.NUMBER, 0); }
 		public LiteralContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_literal; }
+	 
+		public LiteralContext() { }
+		public void copyFrom(LiteralContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class StringLiteralContext extends LiteralContext {
+		public TerminalNode STR() { return getToken(WZRDParser.STR, 0); }
+		public StringLiteralContext(LiteralContext ctx) { copyFrom(ctx); }
+	}
+	public static class NumberLiteralContext extends LiteralContext {
+		public TerminalNode NUMBER() { return getToken(WZRDParser.NUMBER, 0); }
+		public NumberLiteralContext(LiteralContext ctx) { copyFrom(ctx); }
 	}
 
 	public final LiteralContext literal() throws RecognitionException {
 		LiteralContext _localctx = new LiteralContext(_ctx, getState());
-		enterRule(_localctx, 20, RULE_literal);
-		try {
-			int _alt;
-			setState(130);
-			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case NUMBER:
-				enterOuterAlt(_localctx, 1);
-				{
-				setState(121);
-				match(NUMBER);
-				}
-				break;
-			case T__14:
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(122);
-				match(T__14);
-				setState(126);
-				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,12,_ctx);
-				while ( _alt!=1 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
-					if ( _alt==1+1 ) {
-						{
-						{
-						setState(123);
-						matchWildcard();
-						}
-						} 
-					}
-					setState(128);
-					_errHandler.sync(this);
-					_alt = getInterpreter().adaptivePredict(_input,12,_ctx);
-				}
-				setState(129);
-				match(T__14);
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class TypeContext extends ParserRuleContext {
-		public PrimitiveContext primitive() {
-			return getRuleContext(PrimitiveContext.class,0);
-		}
-		public TerminalNode ID() { return getToken(WZRDParser.ID, 0); }
-		public TypeContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_type; }
-	}
-
-	public final TypeContext type() throws RecognitionException {
-		TypeContext _localctx = new TypeContext(_ctx, getState());
-		enterRule(_localctx, 22, RULE_type);
+		enterRule(_localctx, 22, RULE_literal);
 		try {
 			setState(134);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
-			case T__15:
-			case T__16:
-			case T__17:
-			case T__18:
+			case NUMBER:
+				_localctx = new NumberLiteralContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(132);
-				primitive();
+				match(NUMBER);
 				}
 				break;
-			case ID:
+			case STR:
+				_localctx = new StringLiteralContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(133);
-				match(ID);
+				match(STR);
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class PrimitiveContext extends ParserRuleContext {
-		public PrimitiveContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_primitive; }
-	}
-
-	public final PrimitiveContext primitive() throws RecognitionException {
-		PrimitiveContext _localctx = new PrimitiveContext(_ctx, getState());
-		enterRule(_localctx, 24, RULE_primitive);
-		int _la;
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(136);
-			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__15) | (1L << T__16) | (1L << T__17) | (1L << T__18))) != 0)) ) {
-			_errHandler.recoverInline(this);
-			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
-				consume();
-			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -965,53 +971,55 @@ public class WZRDParser extends Parser {
 	private boolean expression_sempred(ExpressionContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0:
-			return precpred(_ctx, 6);
+			return precpred(_ctx, 7);
 		case 1:
-			return precpred(_ctx, 5);
+			return precpred(_ctx, 6);
 		case 2:
+			return precpred(_ctx, 5);
+		case 3:
 			return precpred(_ctx, 4);
 		}
 		return true;
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\33\u008d\4\2\t\2"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\33\u008b\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
-		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\3\2\3\2\7\2\37\n\2\f\2\16\2\"\13\2\3\3"+
-		"\3\3\3\3\3\3\3\3\3\3\7\3*\n\3\f\3\16\3-\13\3\5\3/\n\3\3\3\3\3\3\3\3\4"+
-		"\3\4\3\5\3\5\7\58\n\5\f\5\16\5;\13\5\3\5\3\5\3\6\3\6\3\6\3\6\3\6\5\6D"+
-		"\n\6\3\7\3\7\3\7\3\7\3\7\7\7K\n\7\f\7\16\7N\13\7\5\7P\n\7\3\7\3\7\3\b"+
-		"\3\b\3\b\3\b\3\b\5\bY\n\b\3\t\3\t\3\t\3\t\3\n\3\n\3\n\3\n\3\n\3\n\3\n"+
-		"\3\n\5\ng\n\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\7\nr\n\n\f\n\16\nu\13"+
-		"\n\3\13\3\13\3\13\5\13z\n\13\3\f\3\f\3\f\7\f\177\n\f\f\f\16\f\u0082\13"+
-		"\f\3\f\5\f\u0085\n\f\3\r\3\r\5\r\u0089\n\r\3\16\3\16\3\16\3\u0080\3\22"+
-		"\17\2\4\6\b\n\f\16\20\22\24\26\30\32\2\4\3\2\16\17\3\2\22\25\2\u0094\2"+
-		"\34\3\2\2\2\4#\3\2\2\2\6\63\3\2\2\2\b\65\3\2\2\2\nC\3\2\2\2\fE\3\2\2\2"+
-		"\16S\3\2\2\2\20Z\3\2\2\2\22f\3\2\2\2\24v\3\2\2\2\26\u0084\3\2\2\2\30\u0088"+
-		"\3\2\2\2\32\u008a\3\2\2\2\34 \5\4\3\2\35\37\5\4\3\2\36\35\3\2\2\2\37\""+
-		"\3\2\2\2 \36\3\2\2\2 !\3\2\2\2!\3\3\2\2\2\" \3\2\2\2#$\7\3\2\2$%\5\6\4"+
-		"\2%.\7\4\2\2&+\7\31\2\2\'(\7\5\2\2(*\7\31\2\2)\'\3\2\2\2*-\3\2\2\2+)\3"+
-		"\2\2\2+,\3\2\2\2,/\3\2\2\2-+\3\2\2\2.&\3\2\2\2./\3\2\2\2/\60\3\2\2\2\60"+
-		"\61\7\6\2\2\61\62\5\b\5\2\62\5\3\2\2\2\63\64\7\31\2\2\64\7\3\2\2\2\65"+
-		"9\7\7\2\2\668\5\n\6\2\67\66\3\2\2\28;\3\2\2\29\67\3\2\2\29:\3\2\2\2:<"+
-		"\3\2\2\2;9\3\2\2\2<=\7\b\2\2=\t\3\2\2\2>D\5\b\5\2?D\5\f\7\2@D\5\22\n\2"+
-		"AD\5\20\t\2BD\5\16\b\2C>\3\2\2\2C?\3\2\2\2C@\3\2\2\2CA\3\2\2\2CB\3\2\2"+
-		"\2D\13\3\2\2\2EF\7\31\2\2FO\7\4\2\2GL\5\22\n\2HI\7\5\2\2IK\5\22\n\2JH"+
-		"\3\2\2\2KN\3\2\2\2LJ\3\2\2\2LM\3\2\2\2MP\3\2\2\2NL\3\2\2\2OG\3\2\2\2O"+
-		"P\3\2\2\2PQ\3\2\2\2QR\7\6\2\2R\r\3\2\2\2ST\7\t\2\2TU\5\22\n\2UX\5\b\5"+
-		"\2VW\7\n\2\2WY\5\b\5\2XV\3\2\2\2XY\3\2\2\2Y\17\3\2\2\2Z[\7\13\2\2[\\\5"+
-		"\22\n\2\\]\5\b\5\2]\21\3\2\2\2^_\b\n\1\2_`\7\4\2\2`a\5\22\n\2ab\7\6\2"+
-		"\2bg\3\2\2\2cg\7\31\2\2dg\5\24\13\2eg\5\26\f\2f^\3\2\2\2fc\3\2\2\2fd\3"+
-		"\2\2\2fe\3\2\2\2gs\3\2\2\2hi\f\b\2\2ij\7\f\2\2jr\5\22\n\tkl\f\7\2\2lm"+
-		"\7\r\2\2mr\5\22\n\bno\f\6\2\2op\t\2\2\2pr\5\22\n\7qh\3\2\2\2qk\3\2\2\2"+
-		"qn\3\2\2\2ru\3\2\2\2sq\3\2\2\2st\3\2\2\2t\23\3\2\2\2us\3\2\2\2vy\7\31"+
-		"\2\2wx\7\20\2\2xz\5\22\n\2yw\3\2\2\2yz\3\2\2\2z\25\3\2\2\2{\u0085\7\33"+
-		"\2\2|\u0080\7\21\2\2}\177\13\2\2\2~}\3\2\2\2\177\u0082\3\2\2\2\u0080\u0081"+
-		"\3\2\2\2\u0080~\3\2\2\2\u0081\u0083\3\2\2\2\u0082\u0080\3\2\2\2\u0083"+
-		"\u0085\7\21\2\2\u0084{\3\2\2\2\u0084|\3\2\2\2\u0085\27\3\2\2\2\u0086\u0089"+
-		"\5\32\16\2\u0087\u0089\7\31\2\2\u0088\u0086\3\2\2\2\u0088\u0087\3\2\2"+
-		"\2\u0089\31\3\2\2\2\u008a\u008b\t\3\2\2\u008b\33\3\2\2\2\21 +.9CLOXfq"+
-		"sy\u0080\u0084\u0088";
+		"\t\13\4\f\t\f\4\r\t\r\3\2\3\2\7\2\35\n\2\f\2\16\2 \13\2\3\3\3\3\3\3\3"+
+		"\3\3\3\3\3\7\3(\n\3\f\3\16\3+\13\3\5\3-\n\3\3\3\3\3\3\3\3\4\3\4\3\5\3"+
+		"\5\7\5\66\n\5\f\5\16\59\13\5\3\5\3\5\3\6\3\6\3\6\3\6\3\6\5\6B\n\6\3\7"+
+		"\3\7\3\7\3\7\3\7\7\7I\n\7\f\7\16\7L\13\7\5\7N\n\7\3\7\3\7\3\b\3\b\3\b"+
+		"\3\b\3\b\5\bW\n\b\3\t\3\t\3\t\3\t\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\5\n"+
+		"e\n\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\7\nt\n\n\f\n"+
+		"\16\nw\13\n\3\13\3\13\3\13\5\13|\n\13\3\13\3\13\5\13\u0080\n\13\3\f\3"+
+		"\f\3\f\5\f\u0085\n\f\3\r\3\r\5\r\u0089\n\r\3\r\2\3\22\16\2\4\6\b\n\f\16"+
+		"\20\22\24\26\30\2\4\3\2\16\17\3\2\21\22\2\u0096\2\32\3\2\2\2\4!\3\2\2"+
+		"\2\6\61\3\2\2\2\b\63\3\2\2\2\nA\3\2\2\2\fC\3\2\2\2\16Q\3\2\2\2\20X\3\2"+
+		"\2\2\22d\3\2\2\2\24\177\3\2\2\2\26\u0081\3\2\2\2\30\u0088\3\2\2\2\32\36"+
+		"\5\4\3\2\33\35\5\4\3\2\34\33\3\2\2\2\35 \3\2\2\2\36\34\3\2\2\2\36\37\3"+
+		"\2\2\2\37\3\3\2\2\2 \36\3\2\2\2!\"\7\3\2\2\"#\5\6\4\2#,\7\4\2\2$)\7\32"+
+		"\2\2%&\7\5\2\2&(\7\32\2\2\'%\3\2\2\2(+\3\2\2\2)\'\3\2\2\2)*\3\2\2\2*-"+
+		"\3\2\2\2+)\3\2\2\2,$\3\2\2\2,-\3\2\2\2-.\3\2\2\2./\7\6\2\2/\60\5\b\5\2"+
+		"\60\5\3\2\2\2\61\62\7\32\2\2\62\7\3\2\2\2\63\67\7\7\2\2\64\66\5\n\6\2"+
+		"\65\64\3\2\2\2\669\3\2\2\2\67\65\3\2\2\2\678\3\2\2\28:\3\2\2\29\67\3\2"+
+		"\2\2:;\7\b\2\2;\t\3\2\2\2<B\5\b\5\2=B\5\f\7\2>B\5\22\n\2?B\5\20\t\2@B"+
+		"\5\16\b\2A<\3\2\2\2A=\3\2\2\2A>\3\2\2\2A?\3\2\2\2A@\3\2\2\2B\13\3\2\2"+
+		"\2CD\7\32\2\2DM\7\4\2\2EJ\5\22\n\2FG\7\5\2\2GI\5\22\n\2HF\3\2\2\2IL\3"+
+		"\2\2\2JH\3\2\2\2JK\3\2\2\2KN\3\2\2\2LJ\3\2\2\2ME\3\2\2\2MN\3\2\2\2NO\3"+
+		"\2\2\2OP\7\6\2\2P\r\3\2\2\2QR\7\t\2\2RS\5\22\n\2SV\5\b\5\2TU\7\n\2\2U"+
+		"W\5\b\5\2VT\3\2\2\2VW\3\2\2\2W\17\3\2\2\2XY\7\13\2\2YZ\5\22\n\2Z[\5\b"+
+		"\5\2[\21\3\2\2\2\\]\b\n\1\2]^\7\4\2\2^_\5\22\n\2_`\7\6\2\2`e\3\2\2\2a"+
+		"e\7\32\2\2be\5\26\f\2ce\5\30\r\2d\\\3\2\2\2da\3\2\2\2db\3\2\2\2dc\3\2"+
+		"\2\2eu\3\2\2\2fg\f\t\2\2gh\7\f\2\2ht\5\22\n\nij\f\b\2\2jk\7\r\2\2kt\5"+
+		"\22\n\tlm\f\7\2\2mn\t\2\2\2nt\5\22\n\bop\f\6\2\2pq\5\24\13\2qr\5\22\n"+
+		"\7rt\3\2\2\2sf\3\2\2\2si\3\2\2\2sl\3\2\2\2so\3\2\2\2tw\3\2\2\2us\3\2\2"+
+		"\2uv\3\2\2\2v\23\3\2\2\2wu\3\2\2\2x\u0080\7\20\2\2y{\t\3\2\2z|\7\23\2"+
+		"\2{z\3\2\2\2{|\3\2\2\2|\u0080\3\2\2\2}\u0080\7\24\2\2~\u0080\7\25\2\2"+
+		"\177x\3\2\2\2\177y\3\2\2\2\177}\3\2\2\2\177~\3\2\2\2\u0080\25\3\2\2\2"+
+		"\u0081\u0084\7\32\2\2\u0082\u0083\7\23\2\2\u0083\u0085\5\22\n\2\u0084"+
+		"\u0082\3\2\2\2\u0084\u0085\3\2\2\2\u0085\27\3\2\2\2\u0086\u0089\7\33\2"+
+		"\2\u0087\u0089\7\26\2\2\u0088\u0086\3\2\2\2\u0088\u0087\3\2\2\2\u0089"+
+		"\31\3\2\2\2\21\36),\67AJMVdsu{\177\u0084\u0088";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
