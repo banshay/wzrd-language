@@ -2,6 +2,7 @@ package com.banshay.language.nodes.expressions;
 
 import com.banshay.language.nodes.toplevel.WzrdExpressionNode;
 import com.banshay.language.nodes.toplevel.WzrdStatementNode;
+import com.banshay.language.types.WzrdNull;
 import com.oracle.truffle.api.frame.VirtualFrame;
 import com.oracle.truffle.api.nodes.UnexpectedResultException;
 
@@ -15,10 +16,10 @@ public final class FunctionBodyNode extends WzrdExpressionNode {
   @Override
   public Object executeGeneric(VirtualFrame frame) {
     try {
-      bodyNode.executeVoid(frame);
+      return bodyNode.executeGeneric(frame);
     } catch (Exception ignore) {
     }
-    return null;
+    return WzrdNull.INSTANCE;
   }
 
   @Override

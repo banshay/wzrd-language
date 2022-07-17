@@ -13,7 +13,7 @@ public abstract class GlobalVariableReadNode extends WzrdExpressionNode {
   @Specialization
   @TruffleBoundary
   protected Object readVariable() {
-    var context = WzrdContext.get(null);
+    var context = WzrdContext.get(this);
     var value = context.globalScope.getVariable(this.getName());
     if (value == null) {
       throw new RuntimeException("Variable %s is not defined".formatted(this.getName()));

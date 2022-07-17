@@ -87,4 +87,9 @@ public class WzrdRootNode extends RootNode {
         });
     return writeArgNodes.toArray(LocalVariableWriteNode[]::new);
   }
+
+  @Override
+  public String getName() {
+    return name;
+  }
 }

@@ -2,6 +2,7 @@ package com.banshay.language.nodes.expressions;
 
 import com.banshay.language.WzrdContext;
 import com.banshay.language.nodes.toplevel.WzrdExpressionNode;
+import com.banshay.language.types.WzrdNull;
 import com.oracle.truffle.api.CompilerDirectives.TruffleBoundary;
 import com.oracle.truffle.api.dsl.NodeChild;
 import com.oracle.truffle.api.dsl.NodeField;
@@ -25,6 +26,6 @@ public abstract class GlobalVariableWriteNode extends WzrdExpressionNode {
       throw new RuntimeException("Variable %s already exists".formatted(variableName));
     }
 
-    return null;
+    return WzrdNull.INSTANCE;
   }
 }

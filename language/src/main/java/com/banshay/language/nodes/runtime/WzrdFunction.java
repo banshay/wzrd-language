@@ -2,6 +2,7 @@ package com.banshay.language.nodes.runtime;
 
 import com.banshay.language.WzrdLanguage;
 import com.oracle.truffle.api.CallTarget;
+import com.oracle.truffle.api.RootCallTarget;
 import com.oracle.truffle.api.dsl.Cached;
 import com.oracle.truffle.api.dsl.ReportPolymorphism;
 import com.oracle.truffle.api.dsl.Specialization;
@@ -16,13 +17,13 @@ import com.oracle.truffle.api.nodes.IndirectCallNode;
 public class WzrdFunction implements TruffleObject {
 
   private final String name;
-  public final CallTarget callTarget;
+  public CallTarget callTarget;
 
   public WzrdFunction(String name, WzrdLanguage language) {
     this(name, language.getOrCreateUndefinedFunction(name));
   }
 
-  public WzrdFunction(String name, CallTarget callTarget) {
+  public WzrdFunction(String name, RootCallTarget callTarget) {
     this.name = name;
     this.callTarget = callTarget;
   }
@@ -30,6 +31,10 @@ public class WzrdFunction implements TruffleObject {
   @ExportMessage
   final boolean isExecutable() {
     return true;
+  }
+
+  public void setCallTarget(RootCallTarget callTarget) {
+    this.callTarget = callTarget;
   }
 
   @ExportMessage

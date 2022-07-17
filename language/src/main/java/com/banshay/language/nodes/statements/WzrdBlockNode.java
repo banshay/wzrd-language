@@ -2,6 +2,7 @@ package com.banshay.language.nodes.statements;
 
 import com.banshay.language.nodes.expressions.LocalVariableWriteNode;
 import com.banshay.language.nodes.toplevel.WzrdStatementNode;
+import com.banshay.language.types.WzrdNull;
 import com.oracle.truffle.api.CompilerDirectives;
 import com.oracle.truffle.api.CompilerDirectives.CompilationFinal;
 import com.oracle.truffle.api.frame.VirtualFrame;
@@ -27,16 +28,22 @@ public final class WzrdBlockNode extends WzrdStatementNode
   }
 
   @Override
-  public void executeVoid(VirtualFrame frame) {
+  public Object executeGeneric(VirtualFrame frame) {
     if (this.block != null) {
-      this.block.executeVoid(frame, BlockNode.NO_ARGUMENT);
+      return this.block.executeGeneric(frame, BlockNode.NO_ARGUMENT);
     }
+    return WzrdNull.INSTANCE;
+  }
+
+  @Override
+  public Object executeGeneric(VirtualFrame frame, WzrdStatementNode node, int index, int argument) {
+    return node.executeGeneric(frame);
   }
 
   @Override
   public void executeVoid(
       VirtualFrame frame, WzrdStatementNode statementNode, int index, int argument) {
-    statementNode.executeVoid(frame);
+    statementNode.executeGeneric(frame);
   }
 
   public int getParentBlockIndex() {

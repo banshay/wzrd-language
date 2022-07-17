@@ -9,7 +9,7 @@ import com.oracle.truffle.api.CompilerDirectives;
 import com.oracle.truffle.api.CompilerDirectives.CompilationFinal;
 import com.oracle.truffle.api.frame.VirtualFrame;
 
-public abstract class FunctionStatementNode extends WzrdExpressionNode {
+public final class FunctionStatementNode extends WzrdExpressionNode {
 
   private final String name;
 

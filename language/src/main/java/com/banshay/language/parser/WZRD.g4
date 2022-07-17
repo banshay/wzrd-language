@@ -56,11 +56,15 @@ block
 
 statement
    : block #BlockStatement
-   | function #FunctionStatement
+   | functionLiteral #FunctionStatement
    | expression #ExpressionStatement
    | whileExpression #WhileStatement
    | ifExpression #IfStatement
    ;
+
+functionLiteral
+: ID '(' (expression (',' expression)*)? ')'
+;
 
 ifExpression
    : 'if' expression block ('else' block)?

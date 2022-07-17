@@ -5,13 +5,12 @@ import com.banshay.language.types.WzrdNull;
 import com.oracle.truffle.api.frame.VirtualFrame;
 import com.oracle.truffle.api.profiles.BranchProfile;
 
-public abstract class ReadArgumentNode extends WzrdExpressionNode {
+public class ArgumentNode extends WzrdExpressionNode {
 
   private final int index;
+  private final BranchProfile outOfBoundsToken = BranchProfile.create();
 
-  private final BranchProfile outOfBoundsTaken = BranchProfile.create();
-
-  public ReadArgumentNode(int index) {
+  public ArgumentNode(int index) {
     this.index = index;
   }
 
@@ -21,7 +20,7 @@ public abstract class ReadArgumentNode extends WzrdExpressionNode {
     if (index < arguments.length) {
       return arguments[index];
     }
-    outOfBoundsTaken.enter();
+    outOfBoundsToken.enter();
     return WzrdNull.INSTANCE;
   }
 }

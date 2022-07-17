@@ -1,5 +1,6 @@
 package com.banshay.language;
 
+import com.banshay.language.nodes.WzrdEvalNode;
 import com.banshay.language.nodes.WzrdUndefinedFunctionRootNode;
 import com.oracle.truffle.api.Assumption;
 import com.oracle.truffle.api.CallTarget;
@@ -7,6 +8,7 @@ import com.oracle.truffle.api.RootCallTarget;
 import com.oracle.truffle.api.Truffle;
 import com.oracle.truffle.api.TruffleLanguage;
 import com.oracle.truffle.api.nodes.Node;
+import com.oracle.truffle.api.nodes.RootNode;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -33,10 +35,14 @@ public class WzrdLanguage extends TruffleLanguage<WzrdContext> {
   protected CallTarget parse(ParsingRequest request) throws Exception {
     var functions = WzrdScriptTruffleParser.parse(request.getSource().getReader(), this);
     var mainFunction = functions.get("main");
+    RootNode eval;
     if (mainFunction == null) {
-      throw new RuntimeException("No main function present!");
+      eval = new WzrdEvalNode(this, functions, null);
+    }else {
+      eval = new WzrdEvalNode(this, functions, mainFunction);
     }
-    return mainFunction;
+
+    return eval.getCallTarget();
   }
 
   public RootCallTarget getOrCreateUndefinedFunction(String name) {
